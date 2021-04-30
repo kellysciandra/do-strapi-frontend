@@ -33,12 +33,6 @@ const Order = () => {
     const updateCurrentOrder = (x) => {
         setCurrentOrder(oldOrder => [...oldOrder, x]);
     }
-
-    const style = {
-        borderRadius: 0,
-        // opacity: 0.7,
-        padding: '2em',
-      }
  
     return <>
  
@@ -65,18 +59,19 @@ const Order = () => {
                                     </Table.Cell>
                                     <Table.Cell>{qty}</Table.Cell>
                                     <Table.Cell collapsing>
-
-                                    <Popup
-                                        trigger={
-                                            <Button color='purple' onClick={() => setCurrentItem(item)}>Add</Button>
-                                        }                      
-                                        content={ <EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>}
-                                        on='click'
-                                        inverted
-                                        style={style}
-                                        offset={[0, 50]}
-                                        position='left center'
-                                    />
+                                        <Modal
+                                            basic
+                                            onClose={() => setOpen(false)}
+                                            onOpen={() => setOpen(true)}
+                                            closeOnDimmerClick={false}
+                                            open={open}
+                                            size='small'
+                                            trigger={ <Button color='purple' onClick={() => setCurrentItem(item)}>Add</Button> }
+                                        >
+                                            <Modal.Content></Modal.Content>
+                                                <EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>
+                                         
+                                        </Modal>
                                     </Table.Cell>
                                 </Table.Row>      
                             </Table.Body>
@@ -112,17 +107,3 @@ const Order = () => {
 }
 
 export default Order;
-
-{/* <Modal
-basic
-onClose={() => setOpen(false)}
-onOpen={() => setOpen(true)}
-closeOnDimmerClick={false}
-open={open}
-size='small'
-trigger={  }
->
-<Modal.Content></Modal.Content>
-   
-
-</Modal> */}
