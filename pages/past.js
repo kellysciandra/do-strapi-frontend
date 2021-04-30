@@ -61,7 +61,7 @@ const Past = ({ orders }) => {
     const handleDelete = async (id) => {
         const deleteX = await axios({
             "method": "DELETE",
-            "url": `http://localhost:1337/orders/${id}`
+            "url": `https://do-strapi-backend-cnnh6.ondigitalocean.app/orders/${id}`
         })
         .then((response) => {
             console.log(response)
@@ -74,7 +74,7 @@ const Past = ({ orders }) => {
     const handleSuccess = async (x) => {
         const run = await axios({
             "method": "PUT",
-            "url": `http://localhost:1337/products/${x.product.id}`,
+            "url": `https://do-strapi-backend-cnnh6.ondigitalocean.app/products/${x.product.id}`,
             "data": {
                 qty: x.product.qty - x.qty
             }

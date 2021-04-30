@@ -1,21 +1,9 @@
 import Link from 'next/link';
 import { Button, Table} from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Food = () => {
-    const [products, setProducts] = useState();
-
-    useEffect(() => {
-        axios({
-            "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products"
-        })
-        .then((response) => {
-            setProducts(response.data)
-        })
-    }, []);
+const Food = ({ items }) => {
 
     return <>
         <ItemsContainer>
@@ -29,13 +17,14 @@ const Food = () => {
                 </Table.Row>
                 </Table.Header>
     
-                {products ? products.map(item => {
+                {items ? items.map(item => {
+                    if (item.tag === 'Food')
                     return <>
                         <Table.Body>
                         <Table.Row>
                             <Table.Cell>
                                 <Link href={`/${item.id}`}>
-                                    <a>{item.name}</a>
+                                    <a style={{color: 'blue'}}>{item.name}</a>
                                 </Link>
                             </Table.Cell>
                             <Table.Cell>{item.qty}</Table.Cell>
@@ -50,10 +39,20 @@ const Food = () => {
                         </Table.Row>
                         </Table.Body>        
                     </>
-                }): "no"}
+                }): "No Data"}
             </Table>
         </ItemsContainer>
     </>
+}
+
+Food.getInitialProps = async () => {
+    try {
+        const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products/`);
+        const items = res.data
+        return {items};
+    } catch (error) {
+        return { error }
+    }
 }
 
 export default Food;

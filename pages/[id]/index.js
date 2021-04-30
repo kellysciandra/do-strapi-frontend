@@ -76,7 +76,7 @@ const Item = ({ item }) => {
 
 Item.getInitialProps = async ({ query: { id } }) => {
     try {
-        const res = await axios.get(`http://localhost:1337/products/${id}`);
+        const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products/${id}`);
         const item = res.data
         return {item};
     } catch (error) {
