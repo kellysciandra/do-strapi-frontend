@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useEffect } from 'react'
 import fetch from 'isomorphic-unfetch';
 import EditOrder from './[id]/edit_order';
-import { Button, Modal,Table} from 'semantic-ui-react';
+import { Button, Modal,Table, Grid, Input, Popup } from 'semantic-ui-react';
 import { ItemsHeader, ItemsContainer } from '../styles/index.styles'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
@@ -34,30 +34,11 @@ const Order = () => {
         setCurrentOrder(oldOrder => [...oldOrder, x]);
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     submitOrder();
-    // }
-
-    // const submitOrder = async (id) => {
-
-    //     try {
-    //         const res = await fetch('http://localhost:3000/api/orders', {
-    //             method: 'POST',
-    //             headers: {
-    //                 "Accept": "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //             body: JSON.stringify(currentOrder),
-    //             data: {
-    //                 product: id
-    //             }
-    //         })
-    //         router.push("/");
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    const style = {
+        borderRadius: 0,
+        // opacity: 0.7,
+        padding: '2em',
+      }
  
     return <>
  
@@ -84,19 +65,18 @@ const Order = () => {
                                     </Table.Cell>
                                     <Table.Cell>{qty}</Table.Cell>
                                     <Table.Cell collapsing>
-                                        <Modal
-                                            basic
-                                            onClose={() => setOpen(false)}
-                                            onOpen={() => setOpen(true)}
-                                            closeOnDimmerClick={false}
-                                            open={open}
-                                            size='small'
-                                            trigger={ <Button color='purple' onClick={() => setCurrentItem(item)}>Add</Button> }
-                                        >
-                                            <Modal.Content>
-                                                <EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>
-                                            </Modal.Content>
-                                        </Modal>
+
+                                    <Popup
+                                        trigger={
+                                            <Button color='purple' onClick={() => setCurrentItem(item)}>Add</Button>
+                                        }                      
+                                        content={ <EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>}
+                                        on='click'
+                                        inverted
+                                        style={style}
+                                        offset={[0, 50]}
+                                        position='left center'
+                                    />
                                     </Table.Cell>
                                 </Table.Row>      
                             </Table.Body>
@@ -132,3 +112,17 @@ const Order = () => {
 }
 
 export default Order;
+
+{/* <Modal
+basic
+onClose={() => setOpen(false)}
+onOpen={() => setOpen(true)}
+closeOnDimmerClick={false}
+open={open}
+size='small'
+trigger={  }
+>
+<Modal.Content></Modal.Content>
+   
+
+</Modal> */}

@@ -26,7 +26,8 @@ const AddItemContainer = styled.div`
 const EditItemsContainer = styled.div`
 
     font-family: 'IBM Plex Mono', monospace;
-
+    width: 100%;
+    height: 100%;
     @media ${device.mobileM} {
         /* width: 80%;
         margin: 5em auto; */
