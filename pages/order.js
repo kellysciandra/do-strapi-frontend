@@ -74,7 +74,6 @@ const Order = () => {
                                             <Popup
                                                 trigger={ <Button color='purple' onClick={() => handleOpen(item)}>Add</Button> }
                                                 on='click'
-                                              
                                                 onClose={false}
                                                 // onOpen={() => setOpen(true)}
                                                 position='top right'

@@ -9,6 +9,8 @@ const ItemsContainer = styled.div`
     @media ${device.mobileM} {
         width: 90%;
         margin: 5em auto;
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
 `;
 
