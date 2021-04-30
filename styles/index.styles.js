@@ -60,6 +60,24 @@ const ItemsHeader = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 0 2em 0;
+
+    @media ${device.mobileM} {
+        width: 100%;
+    }
+`;
+
+const DateHeader = styled.div`
+    font-size: 2em;
+    background-color: aliceblue;
+
+    display: flex;
+    justify-content: center;
+    margin: 0 0 2em 0;
+    padding: 10px;
+
+    @media ${device.mobileM} {
+        width: 100%;
+    }
 `;
 
 const OrderContainer = styled.div`
@@ -114,4 +132,4 @@ const ButtonContainer = styled.div`
 
 
 
-export {EditContainer, EditItemsContainer, AddItemContainer, ItemsContainer, CardContainer, ButtonContainer, ItemsHeader, ListContainer, OrderContainer, OrderHeader, ListTitle, OrderSubmit, ListButton, CurrentOrderContainer, CurrentOrderSubmit}
+export {DateHeader, EditContainer, EditItemsContainer, AddItemContainer, ItemsContainer, CardContainer, ButtonContainer, ItemsHeader, ListContainer, OrderContainer, OrderHeader, ListTitle, OrderSubmit, ListButton, CurrentOrderContainer, CurrentOrderSubmit}

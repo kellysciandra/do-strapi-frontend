@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
-import {ItemsContainer, ItemsHeader, CardContainer} from '../styles/index.styles'
+import {ItemsContainer, ItemsHeader, CardContainer, DateHeader} from '../styles/index.styles'
 import moment from 'moment'
 import EditItem from './[id]/edit_order';
 import { Button, Card, Modal } from 'semantic-ui-react';
@@ -92,7 +92,7 @@ const Past = ({ orders }) => {
 
     return <>
         <ItemsContainer>
-            <ItemsHeader>{todaysDate()}</ItemsHeader>
+            <DateHeader>{todaysDate()}</DateHeader>
                 {
                     orders ? orders.map((x) => {
                         const lastNightsOrder = convertToDate(x.date, true)
