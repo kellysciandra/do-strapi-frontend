@@ -1,36 +1,22 @@
-
-import { useCallback, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import React, { useState } from 'react';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 import EditOrder from './[id]/edit_order';
 
-const MyVerticallyCenteredModal = (props) => {
-    return ( 
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-          <EditOrder/>
-      </Modal>
-    );
-  }
-
 const Test = () => {
-    const [modalShow, setModalShow] = useState(false);
-  
-    return (
-      <>
-        <Button onClick={() => setModalShow(true)}>
-          Launch vertically centered modal
-        </Button>
-  
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      </>
-    );
-  }
+  const [open, setOpen] = useState(false);
 
-  export default Test;
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
+  return (
+    <div>
+      <button onClick={onOpenModal}>Open modal</button>
+      <Modal open={open} onClose={onCloseModal} center>
+        <EditOrder/>
+      </Modal>
+    </div>
+  );
+};
+
+export default Test

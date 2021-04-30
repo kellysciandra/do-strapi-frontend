@@ -26,12 +26,26 @@ const AddItemContainer = styled.div`
 const EditItemsContainer = styled.div`
 
     font-family: 'IBM Plex Mono', monospace;
-    
+    margin: auto;
+    width: 100%;
+
+
     @media ${device.mobileM} {
-        width: 80%;
-        margin: 5em auto;
+        /* width: 80%;
+        margin: 5em auto; */
     }
 `
+
+const EditHeader = styled.div`
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 2em 0;
+
+    @media ${device.mobileM} {
+        width: 100%;
+    }
+`;
 
 const EditContainer = styled.div`
     width: 50vw;
@@ -132,4 +146,4 @@ const ButtonContainer = styled.div`
 
 
 
-export {DateHeader, EditContainer, EditItemsContainer, AddItemContainer, ItemsContainer, CardContainer, ButtonContainer, ItemsHeader, ListContainer, OrderContainer, OrderHeader, ListTitle, OrderSubmit, ListButton, CurrentOrderContainer, CurrentOrderSubmit}
+export {EditHeader, DateHeader, EditContainer, EditItemsContainer, AddItemContainer, ItemsContainer, CardContainer, ButtonContainer, ItemsHeader, ListContainer, OrderContainer, OrderHeader, ListTitle, OrderSubmit, ListButton, CurrentOrderContainer, CurrentOrderSubmit}

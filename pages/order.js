@@ -33,6 +33,11 @@ const Order = () => {
     const updateCurrentOrder = (x) => {
         setCurrentOrder(oldOrder => [...oldOrder, x]);
     }
+
+    const handleOpen = (item) => {
+        setCurrentItem(item)
+        setOpen(true)
+    }
  
     return <>
  
@@ -60,17 +65,17 @@ const Order = () => {
                                     <Table.Cell>{qty}</Table.Cell>
                                     <Table.Cell collapsing>
                                         <Modal
-                                            basic
+                                        
                                             onClose={() => setOpen(false)}
                                             onOpen={() => setOpen(true)}
                                             closeOnDimmerClick={false}
                                             open={open}
                                             size='small'
-                                            trigger={ <Button color='purple' onClick={() => setCurrentItem(item)}>Add</Button> }
+                                            trigger={ <Button color='purple' onClick={() => handleOpen(item)}>Add</Button> }
                                         >
-                                            <Modal.Content></Modal.Content>
+                                            <Modal.Content>
                                                 <EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>
-                                         
+                                            </Modal.Content>
                                         </Modal>
                                     </Table.Cell>
                                 </Table.Row>      
