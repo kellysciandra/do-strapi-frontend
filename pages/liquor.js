@@ -5,6 +5,12 @@ import axios from 'axios';
 
 const Liquor = ({ items }) => {
 
+    const itemQuantity = (qty) => {
+        if (qty <= 0) {
+            return 'red'
+        }
+    }
+
     return <>
         <ItemsContainer>
         <ItemsHeader>Beer, Wine, Liquor</ItemsHeader>
@@ -12,7 +18,7 @@ const Liquor = ({ items }) => {
                 <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Product</Table.HeaderCell>
-                    <Table.HeaderCell>Total</Table.HeaderCell>
+                    <Table.HeaderCell>Stock</Table.HeaderCell>
                     <Table.HeaderCell>Action</Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
@@ -27,7 +33,7 @@ const Liquor = ({ items }) => {
                                     <a style={{color: 'green'}}>{item.name}</a>
                                 </Link>
                             </Table.Cell>
-                            <Table.Cell>{item.qty}</Table.Cell>
+                            <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.qty}</Table.Cell>
                             <Table.Cell collapsing textAlign='right'>
                                 <Link href={`/${item.id}`}>
                                     <Button primary>View</Button>

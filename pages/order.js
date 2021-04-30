@@ -38,6 +38,12 @@ const Order = () => {
         setCurrentItem(item)
         setOpen(true)
     }
+
+    const itemQuantity = (qty) => {
+        if (qty <= 0) {
+            return 'red'
+        }
+    }
  
     return <>
 
@@ -47,7 +53,7 @@ const Order = () => {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Product</Table.HeaderCell>
-                            <Table.HeaderCell>Total Available</Table.HeaderCell>
+                            <Table.HeaderCell>Stock</Table.HeaderCell>
                             <Table.HeaderCell>Action</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
@@ -62,10 +68,9 @@ const Order = () => {
                                             <a>{name}</a>
                                         </Link>
                                     </Table.Cell>
-                                    <Table.Cell>{qty}</Table.Cell>
+                                    <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{qty}</Table.Cell>
                                     <Table.Cell collapsing>
-   
-                                 
+
                                             <Popup
                                                 trigger={ <Button color='purple' onClick={() => handleOpen(item)}>Add</Button> }
                                                 on='click'
@@ -75,9 +80,7 @@ const Order = () => {
                                                 position='top right'
                                                 content={<EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>}
                                             >
-
                                             </Popup>
-                                     
                                     </Table.Cell>
                                 </Table.Row>      
                             </Table.Body>

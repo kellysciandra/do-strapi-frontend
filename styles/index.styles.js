@@ -36,11 +36,10 @@ const EditItemsContainer = styled.div`
 `
 
 const EditHeader = styled.div`
-    font-size: 2em;
+    font-size: 1.5em;
     display: flex;
     justify-content: center;
-    margin: 0 0 2em 0;
-
+    margin: 0 0 1em 0;
     @media ${device.mobileM} {
         width: 100%;
     }
