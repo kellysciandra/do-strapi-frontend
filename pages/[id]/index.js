@@ -26,7 +26,7 @@ const Item = ({ item }) => {
     const deleteItem = async () => {
         const itemId = router.query.id;
         try {
-            const deleted = await fetch(`http://localhost:1337/products/${itemId}`, {
+            const deleted = await fetch(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products/${itemId}`, {
                 method: "Delete"
             });
             router.push("/")

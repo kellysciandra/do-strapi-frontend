@@ -26,7 +26,7 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
 
     const updateItem = async () => {
         try {
-            const res = await fetch('http://localhost:1337/orders', {
+            const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/orders', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
