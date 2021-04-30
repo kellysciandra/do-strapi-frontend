@@ -9,7 +9,7 @@ const NavbarContainer = styled.div`
   height: 5rem;
   transition: 0.25s ease-in-out;
   cursor: url(hand.cur), pointer;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 500px) {
     top: 0;
     position: relative;
     height: auto;
@@ -28,11 +28,11 @@ const NavLink = styled.div`
   font-family: 'IBM Plex Mono', monospace;
   font-size: 1.5em;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 500px) {
     border: 2px solid skyblue;
     margin: 4px 0 0 0;
     padding: 10px;
-    height: 40px;
+    height: 45px;
     font-size: 1.25em;
     justify-content: center;
   }
