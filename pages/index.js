@@ -10,7 +10,7 @@ const Index = () => {
     useEffect(() => {
         axios({
             "method": "GET",
-            "url": "https://final-inventory-app-kellysciandra.vercel.app/products"
+            "url": "http://localhost:1337/products"
         })
         .then((response) => {
             setProducts(response.data)
