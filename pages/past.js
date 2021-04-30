@@ -128,7 +128,7 @@ const Past = ({ orders }) => {
 };
 
 Past.getInitialProps = async (ctx) => {
-    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/orders');
+    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/orders?_limit=500');
     const data = await res.json();
     console.log(data)
     return { orders: data }

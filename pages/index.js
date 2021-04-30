@@ -10,7 +10,7 @@ const Index = () => {
     useEffect(() => {
         axios({
             "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products"
+            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500"
         })
         .then((response) => {
             setProducts(response.data)

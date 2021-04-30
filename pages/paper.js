@@ -32,9 +32,6 @@ const Paper = ({ items }) => {
                                 <Link href={`/${item.id}`}>
                                     <Button primary>View</Button>
                                 </Link>
-                                <Link href={`/${item.id}/edit`}>
-                                    <Button color="orange">Edit</Button>
-                                </Link>
                             </Table.Cell>
                         </Table.Row>
                         </Table.Body>        
@@ -47,7 +44,7 @@ const Paper = ({ items }) => {
 
 Paper.getInitialProps = async () => {
     try {
-        const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products/`);
+        const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500`);
         const items = res.data
         return {items};
     } catch (error) {
