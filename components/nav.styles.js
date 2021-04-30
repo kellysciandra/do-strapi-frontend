@@ -13,6 +13,8 @@ const NavbarContainer = styled.div`
     top: 0;
     position: relative;
     height: auto;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

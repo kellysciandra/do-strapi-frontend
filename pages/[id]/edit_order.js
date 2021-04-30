@@ -36,7 +36,7 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
             })
             handleModal(false)
             updateOrder(form)
-            router.push("/order");
+            router.reload(window.location.pathname);
         } catch (error) {
             console.log(error);
         }

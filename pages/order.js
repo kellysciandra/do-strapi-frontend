@@ -40,7 +40,7 @@ const Order = () => {
     }
  
     return <>
- 
+
         <ItemsContainer>
             <ItemsHeader>Place an order</ItemsHeader>
                 <Table unstackable celled>
@@ -64,19 +64,20 @@ const Order = () => {
                                     </Table.Cell>
                                     <Table.Cell>{qty}</Table.Cell>
                                     <Table.Cell collapsing>
-                                        <Modal
-                                            className='scrolling'
-                                            onClose={() => setOpen(false)}
-                                            onOpen={() => setOpen(true)}
-                                            closeOnDimmerClick={false}
-                                            open={open}
-                                            size='small'
-                                            trigger={ <Button color='purple' onClick={() => handleOpen(item)}>Add</Button> }
-                                        >
-                                            <Modal.Content>
-                                                <EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>
-                                            </Modal.Content>
-                                        </Modal>
+   
+                                 
+                                            <Popup
+                                                trigger={ <Button color='purple' onClick={() => handleOpen(item)}>Add</Button> }
+                                                on='click'
+                                              
+                                                onClose={false}
+                                                // onOpen={() => setOpen(true)}
+                                                position='top right'
+                                                content={<EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>}
+                                            >
+
+                                            </Popup>
+                                     
                                     </Table.Cell>
                                 </Table.Row>      
                             </Table.Body>

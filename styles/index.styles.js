@@ -27,12 +27,11 @@ const EditItemsContainer = styled.div`
 
     font-family: 'IBM Plex Mono', monospace;
     margin: auto;
-    width: 100%;
+    width: 50vw;
 
 
     @media ${device.mobileM} {
-        /* width: 80%;
-        margin: 5em auto; */
+   
     }
 `
 
@@ -51,7 +50,7 @@ const EditContainer = styled.div`
     width: 50vw;
     margin: 10em 0 10em 35em;
     font-family: 'IBM Plex Mono', monospace;
-
+  
     @media ${device.mobileM} {
         width: 80%;
         margin: 5em auto;
@@ -70,7 +69,7 @@ const CurrentOrderSubmit = styled.div`
 `;
 
 const ItemsHeader = styled.div`
-    font-size: 2em;
+    font-size: 1.5em;
     display: flex;
     justify-content: center;
     margin: 0 0 2em 0;
@@ -98,7 +97,12 @@ const OrderContainer = styled.div`
     display: flex;
     width: 50vw;
     margin: 10em 0 10em 40em;
-    font-family: 'IBM Plex Mono', monospace
+    font-family: 'IBM Plex Mono', monospace;
+
+    @media ${device.mobileM} {
+        width: 90%;
+        margin: 5em auto;
+    }
 `
 const OrderHeader = styled.div`
     font-size: 2em;
