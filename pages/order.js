@@ -65,7 +65,7 @@ const Order = () => {
                                     <Table.Cell>{qty}</Table.Cell>
                                     <Table.Cell collapsing>
                                         <Modal
-                                        
+                                            className='scrolling'
                                             onClose={() => setOpen(false)}
                                             onOpen={() => setOpen(true)}
                                             closeOnDimmerClick={false}
