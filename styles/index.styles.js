@@ -7,7 +7,7 @@ const ItemsContainer = styled.div`
     font-family: 'IBM Plex Mono', monospace;
 
     @media ${device.mobileM} {
-        width: auto;
+        width: 90%;
         margin: 5em auto;
     }
 `;
