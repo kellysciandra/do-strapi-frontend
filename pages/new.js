@@ -24,7 +24,7 @@ const NewItem = () => {
 
     const createItem = async () => {
         try {
-            const res = await fetch('http://localhost:1337/products', {
+            const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
