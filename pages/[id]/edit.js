@@ -138,3 +138,11 @@
 // }
 
 // export default EditItem;
+
+const Edit = () => {
+    return <>
+    test
+    </>
+};
+
+export default Edit
