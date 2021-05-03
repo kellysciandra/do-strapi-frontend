@@ -38,6 +38,11 @@ const Navbar = () => (
                 <a className="navlink">Today's Order</a>
             </Link>
         </NavLink>
+        <NavLink>
+            <Link href="/ice">
+                <a className="navlink">Ice Accounts</a>
+            </Link>
+        </NavLink>
     </NavbarContainer>
 )
 

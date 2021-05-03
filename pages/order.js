@@ -59,7 +59,7 @@ const Order = () => {
                     </Table.Header>
         
                     {products ? products.map(item => {
-                    const {id, name, qty, totalOrdered} = item
+                    const {id, name, qty } = item
                         return <>          
                             <Table.Body>
                                 <Table.Row>
@@ -86,30 +86,6 @@ const Order = () => {
                         </>
                     }): null}
                 </Table>
-            {/* <ListContainer>
-                <ListTitle>Current Order</ListTitle>  
-                
-                    <CurrentOrderContainer>
-                        {products ? products.map(item => {
-
-                        if (item.totalOrdered) {
-                            return <>
-                        <Card.Group>
-                            <Card style={{alignItems: 'center'}}>
-                                <Card.Content extra description={ `${item.product} - ${item.totalOrdered}`}/>
-                            </Card>
-                        </Card.Group>
-                        </>
-                        }}): null}
-                    </CurrentOrderContainer>
-                    <CurrentOrderSubmit>
-                     
-                            <Button onClick={(e) => handleSubmit(e)} size="tiny" color='blue'>Submit</Button> 
-                    
-                    </CurrentOrderSubmit>  
-                    
-            </ListContainer> */}
-
         </ItemsContainer>
   </>
 }

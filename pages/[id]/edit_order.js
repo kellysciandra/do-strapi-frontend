@@ -71,6 +71,10 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
         return momentDate;
     };
 
+    const handleBack = () => {
+        router.reload(window.location.pathname);
+    }
+
     return (
         <EditItemsContainer>
             <EditHeader>Order Item</EditHeader>
@@ -100,6 +104,7 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
                                 onChange={handleChange}
                             />
                             <Button type='submit'>Update</Button>
+                            <Button size='medium' onClick={() => handleBack()}>Cancel</Button>
                         </Form>
                 }
             </>
