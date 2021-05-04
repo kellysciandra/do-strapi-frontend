@@ -1,15 +1,28 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { Button, Form, Loader } from 'semantic-ui-react';
+import { Button, Form, Loader, Table } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
-import {AddItemContainer, ItemsHeader} from '../styles/index.styles'
+import {AddItemContainer, ItemsContainer, ItemsHeader} from '../styles/index.styles'
+import axios from 'axios';
 
 const Ice = ({ accounts }) => {
-    const [form, setForm] = useState({ account: '', total: '' });
+    const [form, setForm] = useState({ account: '', balance: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
+
+    const [accountInfo, setAccountInfo] = useState();
+
+    useEffect(() => {
+        axios({
+            "method": "GET",
+            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/ices?_limit=500"
+        })
+        .then((response) => {
+            setAccountInfo(response.data)
+        })
+    }, []);
 
     useEffect(() => {
         if (isSubmitting) {
@@ -24,7 +37,7 @@ const Ice = ({ accounts }) => {
 
     const createItem = async () => {
         try {
-            const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/ice?_limit=500', {
+            const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/ices?_limit=500', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
@@ -56,10 +69,10 @@ const Ice = ({ accounts }) => {
         let err = {};
 
         if (!form.account) {
-            err.account = 'Product is required';
+            err.account = 'Account is required';
         }
-        if (!form.total) {
-            err.total = 'Total is required';
+        if (!form.balance) {
+            err.balance = 'Total is required';
         }
 
         return err;
@@ -67,7 +80,7 @@ const Ice = ({ accounts }) => {
 
     return <>
         <AddItemContainer>
-            <ItemsHeader>Add To Account</ItemsHeader>
+            <ItemsHeader>Add New Account</ItemsHeader>
             <div>
                 {
                     isSubmitting
@@ -83,32 +96,61 @@ const Ice = ({ accounts }) => {
                             />
                             <Form.Input
                                 fluid
-                                error={errors.qty ? { content: 'Please enter a qty', pointing: 'below' } : null}
-                                label='Total'
-                                placeholder='Total'
-                                name='total'
+                                error={errors.balance ? { content: 'Please enter a total', pointing: 'below' } : null}
+                                label='Total $ Amount'
+                                placeholder='Balance'
+                                name='balance'
                                 onChange={handleChange}
                             />
-
                             <Button type='submit'>Add</Button>
                         </Form>
                 }
             </div>
         </AddItemContainer>
-        {console.log(accounts)}
+        <IceAccounts accounts={accountInfo}/>
         
     </>
 }
 
-Ice.getInitialProps = async () => {
-    try {
-        const res = await axios.get(`https://localhost:1337/ice`);
-        const accounts = res.data
-        return { accounts };
-    } catch (error) {
-        return { error }
-    }
-}
-
 
 export default Ice;
+
+
+
+const IceAccounts = ({accounts}) => {
+
+    return <>
+        <ItemsContainer>
+        <ItemsHeader>Current Accounts</ItemsHeader>
+            <Table unstackable celled>
+                <Table.Header>
+                <Table.Row> 
+                    <Table.HeaderCell>Account</Table.HeaderCell>
+                    <Table.HeaderCell>Balance</Table.HeaderCell>
+                    <Table.HeaderCell>Action</Table.HeaderCell>
+                </Table.Row>
+                </Table.Header>
+                {accounts ? accounts.map(account => {
+                    return <>
+                        <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>
+                           
+                                    {account.account}
+                              
+                            </Table.Cell>
+                            <Table.Cell>$ {account.balance}</Table.Cell>
+                            <Table.Cell collapsing textAlign='right'>
+                            <Link href={`/${account.id}/edit_ice`}>
+                                    <Button color="orange">Edit</Button>
+                                </Link>
+                            </Table.Cell>
+                        </Table.Row>
+                        </Table.Body>        
+                    </>
+                }): 'No Data'}
+            </Table>
+        </ItemsContainer>
+    </>
+};
+
