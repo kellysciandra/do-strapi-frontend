@@ -39,6 +39,16 @@ const Order = () => {
         setOpen(true)
     }
 
+    const itemTag = (tag) => {
+        if (tag === 'Paper') {
+            return 'red'
+        } else if (tag === 'Food') {
+            return 'blue'
+        } else if (tag === 'Liquor') {
+            return 'green'
+        }
+    }
+
     const itemQuantity = (qty) => {
         if (qty <= 0) {
             return 'red'
@@ -65,7 +75,7 @@ const Order = () => {
                                 <Table.Row>
                                     <Table.Cell>
                                         <Link href={`/${id}`}>
-                                            <a>{name}</a>
+                                        <a style={{color: itemTag(item.tag)}}>{name}</a>
                                         </Link>
                                     </Table.Cell>
                                     <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{qty}</Table.Cell>
