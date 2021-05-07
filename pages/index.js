@@ -17,6 +17,12 @@ const Index = () => {
         })
     }, []);
 
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 500, behavior: 'smooth' })
+        }
+    })
+
     const itemTag = (tag) => {
         if (tag === 'Paper') {
             return 'red'
