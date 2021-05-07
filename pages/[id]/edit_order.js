@@ -98,13 +98,13 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
                             <Form.Input
                                 fluid
                                 label='Quantity'
-                                placeholder='Quantity'
+                                placeholder={item.qty === 0 ? 'Item is out of stock' : 'Quantity'}
                                 name='qty'
                                 error={errors.qty ? { content: 'Please enter a total quantity', pointing: 'below' } : null}
                                 onChange={handleChange}
                             />
-                            <Button type='submit'>Update</Button>
-                            <Button size='medium' onClick={() => handleBack()}>Cancel</Button>
+                            <Button style={{padding: '10px'}} type='submit'>Update</Button>
+                            <Button size='medium' style={{padding: '10px'}} onClick={() => handleBack()}>Cancel</Button>
                         </Form>
                 }
             </>
