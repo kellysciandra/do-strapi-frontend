@@ -103,8 +103,8 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
                                 error={errors.qty ? { content: 'Please enter a total quantity', pointing: 'below' } : null}
                                 onChange={handleChange}
                             />
-                            <Button style={{padding: '10px'}} type='submit'>Update</Button>
-                            <Button size='medium' style={{padding: '10px'}} onClick={() => handleBack()}>Cancel</Button>
+                            <Button  size='mini' style={{padding: '10px'}} type='submit'>Update</Button>
+                            <Button size='mini' style={{padding: '10px'}} onClick={() => handleBack()}>Cancel</Button>
                         </Form>
                 }
             </>

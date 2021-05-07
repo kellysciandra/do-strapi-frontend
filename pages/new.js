@@ -23,7 +23,7 @@ const NewItem = () => {
     }, [errors])
 
     useEffect(() => {
-        window.scrollTo(250,250)
+        window.scrollTo({ top: 900, behavior: 'smooth' })
     })
 
     const createItem = async () => {
