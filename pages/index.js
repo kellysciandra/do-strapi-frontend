@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { Button, Table } from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import {isMobile} from 'react-device-detect';
 
 const Index = () => {
     const [products, setProducts] = useState();
+    const scrollRef = useRef(null);
 
     useEffect(() => {
         axios({
@@ -20,7 +21,7 @@ const Index = () => {
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 300, behavior: 'smooth' })
+            window.scrollTo({ scrollRef, behavior: 'smooth' })
         }
     })
 
@@ -41,7 +42,7 @@ const Index = () => {
     }
 
     return <>
-        <ItemsContainer>
+        <ItemsContainer ref={scrollRef}>
         <ItemsHeader>Warehouse Inventory</ItemsHeader>
             <Table unstackable celled>
                 <Table.Header>
