@@ -22,6 +22,10 @@ const NewItem = () => {
         }
     }, [errors])
 
+    useEffect(() => {
+        window.scrollTo(250,250)
+    })
+
     const createItem = async () => {
         try {
             const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products', {
