@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Button, Table} from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
 import axios from 'axios';
-import {isMobile} from 'react-device-detect';
 
 const Liquor = ({ items }) => {
 
@@ -11,12 +10,6 @@ const Liquor = ({ items }) => {
             return 'red'
         }
     }
-
-    useEffect(() => {
-        if (isMobile) {
-            window.scrollTo({ top: 350, behavior: 'smooth' })
-        }
-    })
 
     return <>
         <ItemsContainer>

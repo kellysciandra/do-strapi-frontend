@@ -3,7 +3,6 @@ import { Button, Table } from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {isMobile} from 'react-device-detect';
 
 const Index = () => {
     const [products, setProducts] = useState();
@@ -17,12 +16,6 @@ const Index = () => {
             setProducts(response.data)
         })
     }, []);
-
-    useEffect(() => {
-        if (isMobile) {
-            window.scrollTo({ top: 350, behavior: 'smooth' })
-        }
-    })
 
     const itemTag = (tag) => {
         if (tag === 'Paper') {
