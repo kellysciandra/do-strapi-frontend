@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react'
 import fetch from 'isomorphic-unfetch';
-import EditOrder from './[id]/edit_order';
+import EditOrder from '../components/EditOrder';
 import { Button, Modal,Table, Grid, Input, Popup } from 'semantic-ui-react';
 import { ItemsHeader, ItemsContainer } from '../styles/index.styles'
 import { useState } from 'react';

@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import {ItemsContainer, ItemsHeader, CardContainer, DateHeader} from '../styles/index.styles'
 import moment from 'moment'
-import EditItem from './[id]/edit_order';
 import { Button, Card, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

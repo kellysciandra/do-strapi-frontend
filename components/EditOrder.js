@@ -4,7 +4,7 @@ import fetch from 'isomorphic-unfetch';
 import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import moment from 'moment'
-import { EditItemsContainer, EditHeader } from '../../styles/index.styles';
+import { EditItemsContainer, EditHeader } from '../styles/index.styles';
 
 const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
     const [form, setForm] = useState({ name: name, qty: 0, date: new Date(), product: productID });
@@ -103,8 +103,8 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
                                 error={errors.qty ? { content: 'Please enter a total quantity', pointing: 'below' } : null}
                                 onChange={handleChange}
                             />
-                            <Button  size='mini' style={{padding: '10px'}} type='submit'>Update</Button>
-                            <Button size='mini' style={{padding: '10px'}} onClick={() => handleBack()}>Cancel</Button>
+                            <Button  size='mini' type='submit'>Update</Button>
+                            <Button size='mini' onClick={() => handleBack()}>Cancel</Button>
                         </Form>
                 }
             </>
