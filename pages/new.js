@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch';
 import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import {AddItemContainer, ItemsHeader} from '../styles/index.styles'
+import {isMobile} from 'react-device-detect';
 
 const NewItem = () => {
     const [form, setForm] = useState({ product: '', total: '' });
@@ -23,7 +24,9 @@ const NewItem = () => {
     }, [errors])
 
     useEffect(() => {
-        window.scrollTo({ top: 900, behavior: 'smooth' })
+        if (isMobile) {
+            window.scrollTo({ top: 700, behavior: 'smooth' })
+        }
     })
 
     const createItem = async () => {
