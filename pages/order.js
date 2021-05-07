@@ -7,6 +7,7 @@ import { ItemsHeader, ItemsContainer } from '../styles/index.styles'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import {isMobile} from 'react-device-detect';
 
 
 const Order = () => {
@@ -25,6 +26,12 @@ const Order = () => {
             setProducts(response.data)
         })
     }, []);
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 350, behavior: 'smooth' })
+        }
+    })
 
     const updateModal = (x) => {
         setOpen(x)

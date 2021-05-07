@@ -6,6 +6,7 @@ import { Button, Card, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+import {isMobile} from 'react-device-detect';
 
 const Past = ({ orders }) => {
     const [targetItem, setTargetItem] = useState();
@@ -28,6 +29,12 @@ const Past = ({ orders }) => {
             handleDelete(targetItem.id)
         }) : null
     }, [targetItem])
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 350, behavior: 'smooth' })
+        }
+    })
 
     const convertToDate = (stringFromData, short) => {
         const splitTime = stringFromData.split("T");

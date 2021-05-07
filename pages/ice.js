@@ -5,6 +5,7 @@ import { Button, Form, Loader, Table } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import {AddItemContainer, ItemsContainer, ItemsHeader} from '../styles/index.styles'
 import axios from 'axios';
+import {isMobile} from 'react-device-detect';
 
 const Ice = ({ accounts }) => {
     const [form, setForm] = useState({ account: '', balance: '' });
@@ -34,6 +35,12 @@ const Ice = ({ accounts }) => {
             }
         }
     }, [errors])
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 350, behavior: 'smooth' })
+        }
+    })
 
     const createItem = async () => {
         try {
