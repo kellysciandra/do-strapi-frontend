@@ -38,4 +38,24 @@ const NavLink = styled.div`
   }
 `;
 
-export {NavbarContainer, NavLink}
+const SearchLink = styled.div`
+  display: flex;
+  font-weight: bold;
+  margin: 1rem 0 0 5rem;
+  text-decoration: none;
+  cursor: url(hand.cur), pointer;
+  padding:0 0 20px 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.5em;
+
+  @media only screen and (max-width: 500px) {
+    border: 2px solid orange;
+    margin: 4px 0 0 0;
+    padding: 10px;
+    height: 45px;
+    font-size: 1.25em;
+    justify-content: center;
+  }
+`;
+
+export {NavbarContainer, NavLink, SearchLink}

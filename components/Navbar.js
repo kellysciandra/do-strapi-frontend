@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {NavbarContainer, NavLink} from './nav.styles.js'
+import {NavbarContainer, NavLink, SearchLink} from './nav.styles.js'
 
 const Navbar = () => (
     <NavbarContainer>
@@ -43,6 +43,11 @@ const Navbar = () => (
                 <a className="navlink">Ice Accounts</a>
             </Link>
         </NavLink>
+        <SearchLink>
+            <Link href="/search">
+                <a className="navlink">Search</a>
+            </Link>
+        </SearchLink>
     </NavbarContainer>
 )
 

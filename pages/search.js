@@ -68,7 +68,9 @@ const Search = () => {
     return <>
         <ItemsContainer>
             <ItemsHeader>Search</ItemsHeader>
-            <Input 
+            <Input  
+                icon='search'
+                fluid
                 placeholder='Search...'
                 onChange={handleChange}
             />
