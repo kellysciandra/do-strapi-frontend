@@ -3,17 +3,17 @@ import { Button, Table} from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
 import axios from 'axios';
 
-const Chemical = ({ items }) => {
+const Coke = ({ items }) => {
 
     const itemQuantity = (qty) => {
         if (qty <= 0) {
             return 'red'
         }
-    }
+    };
 
     return <>
         <ItemsContainer>
-        <ItemsHeader>Chemicals</ItemsHeader>
+        <ItemsHeader>Coke</ItemsHeader>
             <Table unstackable celled>
                 <Table.Header>
                 <Table.Row>
@@ -24,13 +24,13 @@ const Chemical = ({ items }) => {
                 </Table.Header>
     
                 {items ? items.map(item => {
-                    if (item.tag === 'Chemical')
+                    if (item.tag === 'Coke')
                     return <>
                         <Table.Body>
                         <Table.Row>
                             <Table.Cell>
                                 <Link href={`/${item.id}`}>
-                                    <a style={{color: 'red'}}>{item.name}</a>
+                                    <a style={{color: 'green'}}>{item.name}</a>
                                 </Link>
                             </Table.Cell>
                             <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.qty}</Table.Cell>
@@ -48,7 +48,7 @@ const Chemical = ({ items }) => {
     </>
 }
 
-Chemical.getInitialProps = async () => {
+Coke.getInitialProps = async () => {
     try {
         const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500`);
         const items = res.data
@@ -58,4 +58,4 @@ Chemical.getInitialProps = async () => {
     }
 }
 
-export default Chemical;
+export default Coke;

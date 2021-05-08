@@ -4,6 +4,7 @@ import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditOrder from '../components/EditOrder';
+import {isMobile} from 'react-device-detect';
 
 const Search = () => {
     const [products, setProducts] = useState();
@@ -23,6 +24,12 @@ const Search = () => {
             setProducts(response.data)
         })
     }, []);
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 350, behavior: 'smooth' })
+        }
+    })
 
 
     const itemTag = (tag) => {

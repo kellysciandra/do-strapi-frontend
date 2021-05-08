@@ -82,6 +82,11 @@ const EditIce = ({ x }) => {
         router.push("/ice");
     };
 
+    const addFifty = () => {
+        setForm(form.balance = form.balance + 15)
+        
+    };
+
     return <>
         <EditContainer>
             <h1>Update Item</h1>

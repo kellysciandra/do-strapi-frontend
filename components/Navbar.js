@@ -53,6 +53,16 @@ const options = [
           </Link>
         ),
     },
+    {
+        key: 6,
+        text: 'Coke',
+        value: 6,
+        content: (
+          <Link href="/coke">
+          <a className="navlink">Coke Products</a>
+          </Link>
+        ),
+    },
   ]
 
 const Navbar = () => (
@@ -88,7 +98,7 @@ const Navbar = () => (
             </Link>
         </SearchLink>
         <DropDownLink>
-            <Dropdown selection fluid options={options} placeholder='Choose an option' />
+            <Dropdown selection  options={options} placeholder='Choose an option' />
         </DropDownLink>
     </NavbarContainer>
 )
