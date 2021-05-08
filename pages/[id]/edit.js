@@ -119,7 +119,7 @@ const Edit = ({ item }) => {
                                 value={form.vendor}
                                 onChange={handleChange}
                             />
-                            <Button type='submit'>Update</Button>
+                            <Button color='purple' type='submit'>Update</Button>
                         </Form>
                 }
             </div>
