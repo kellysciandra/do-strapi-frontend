@@ -24,6 +24,12 @@ const Index = () => {
             return 'blue'
         } else if (tag === 'Liquor') {
             return 'green'
+        } else if (tag === 'Chemical') {
+            return 'purple'
+        } else if (tag === 'Coke') {
+            return 'orange'
+        } else if (tag === 'TShirt') {
+            return 'pink'
         }
     };
 

@@ -30,7 +30,7 @@ const Coke = ({ items }) => {
                         <Table.Row>
                             <Table.Cell>
                                 <Link href={`/${item.id}`}>
-                                    <a style={{color: 'green'}}>{item.name}</a>
+                                    <a style={{color: 'orange'}}>{item.name}</a>
                                 </Link>
                             </Table.Cell>
                             <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.qty}</Table.Cell>

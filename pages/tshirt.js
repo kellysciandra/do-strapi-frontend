@@ -30,7 +30,7 @@ const Tshirt = ({ items }) => {
                         <Table.Row>
                             <Table.Cell>
                                 <Link href={`/${item.id}`}>
-                                    <a style={{color: 'red'}}>{item.name}</a>
+                                    <a style={{color: 'pink'}}>{item.name}</a>
                                 </Link>
                             </Table.Cell>
                             <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.qty}</Table.Cell>
