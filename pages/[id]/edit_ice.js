@@ -108,9 +108,9 @@ const EditIce = ({ x }) => {
                                     value={form.balance}
                                     onChange={handleChange}
                                 />
-                                <Button size='mini' type='submit'>Update</Button>
+                                <Button size='mini' color='purple' type='submit'>Update</Button>
                                 <Button size='mini' color='red' onClick={() => handleDelete()}>Delete</Button>
-                                <Button size='mini' onClick={() => handleBack()}>Cancel</Button>
+                                <Button size='mini' color='green' onClick={() => handleBack()}>Cancel</Button>
                             </Form>
                     }
                 </div>

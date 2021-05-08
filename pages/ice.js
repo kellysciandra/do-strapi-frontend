@@ -109,7 +109,7 @@ const Ice = ({ accounts }) => {
                                 name='balance'
                                 onChange={handleChange}
                             />
-                            <Button type='submit'>Add</Button>
+                            <Button color='purple' type='submit'>Add</Button>
                         </Form>
                 }
             </div>

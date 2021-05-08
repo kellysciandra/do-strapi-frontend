@@ -135,7 +135,7 @@ const CardContainer = styled.div`
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 0 0 1em 0;
+    margin: 1em 0 1em 0;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 1.25em;
 `;
@@ -143,7 +143,7 @@ const CardContainer = styled.div`
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
-`
+`;
 
 
 

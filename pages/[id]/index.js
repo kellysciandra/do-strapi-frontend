@@ -1,11 +1,11 @@
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { Card, Confirm, Button, Loader } from 'semantic-ui-react';
 import {CardContainer, ButtonContainer, ItemsContainer, ItemsHeader} from '../../styles/index.styles';
 import Link from 'next/link';
 import axios from 'axios';
-import Index from '..';
+import {isMobile} from 'react-device-detect';
 
 const Item = ({ item }) => {
     const [confirm, setConfirm] = useState(false);
@@ -17,7 +17,13 @@ const Item = ({ item }) => {
         if (isDeleting) {
             deleteItem();
         }
-    }, [isDeleting])
+    }, [isDeleting]);
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 350, behavior: 'smooth' })
+        }
+    });
 
     const open = () => setConfirm(true);
     
@@ -54,10 +60,11 @@ const Item = ({ item }) => {
                             <Card.Content description={`Cost: ${item.cost}`}/>
                             <Card.Content description={`Vendor: ${item.vendor}`}/>
                             <Card.Content extra>
-                                <Button color="red" onClick={open}>Delete</Button>
+                                <Button size='mini' color="red" onClick={open}>Delete</Button>
                                 <Link href={`/${item.id}/edit`}>
-                                    <Button color="orange">Edit</Button>
+                                    <Button size='mini' color="orange">Edit</Button>
                                 </Link>
+                                <Button  color='green' size='mini' onClick={() => router.back()}>back</Button>
                             </Card.Content>
                         </Card>
                         </CardContainer> 
@@ -70,6 +77,7 @@ const Item = ({ item }) => {
                 onConfirm={handleDelete}
             />
         </ItemsContainer>
+        
     )
 };
 
