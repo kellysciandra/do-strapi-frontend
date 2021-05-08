@@ -9,7 +9,7 @@ const Liquor = ({ items }) => {
         if (qty <= 0) {
             return 'red'
         }
-    }
+    };
 
     return <>
         <ItemsContainer>

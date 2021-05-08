@@ -21,7 +21,7 @@ const EditIce = ({ x }) => {
                 setIsSubmitting(false);
             }
         }
-    }, [errors])
+    }, [errors]);
 
     const updateItem = async () => {
         try {
@@ -38,21 +38,21 @@ const EditIce = ({ x }) => {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let errs = validate();
         setErrors(errs);
         setIsSubmitting(true);
-    }
+    };
 
     const handleChange = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         })
-    }
+    };
 
     const validate = () => {
         let err = {};
@@ -64,7 +64,7 @@ const EditIce = ({ x }) => {
             err.balance = 'Balance is required';
         }
         return err;
-    }
+    };
 
     const handleDelete = async () => {
         const itemId = x.id;
@@ -78,40 +78,45 @@ const EditIce = ({ x }) => {
         }
     };
 
-    return (
+    const handleBack = () => {
+        router.push("/ice");
+    };
+
+    return <>
         <EditContainer>
             <h1>Update Item</h1>
-            <div>
-                {
-                    isSubmitting
-                        ? <Loader active inline='centered' />
-                        : <Form onSubmit={handleSubmit}>
-                            <Form.Input
-                                fluid
-                                error={errors.total ? { content: 'Please enter the account name', pointing: 'below' } : null}
-                                label='Account'
-                                placeholder='Account'
-                                name='account'
-                                value={form.account}
-                                onChange={handleChange}
-                            />
-                            <Form.Input
-                                fluid
-                                label='Account Balance'
-                                placeholder='Balance'
-                                name='balance'
-                                error={errors.balance ? { content: 'Please enter the account balance', pointing: 'below' } : null}
-                                value={form.balance}
-                                onChange={handleChange}
-                            />
-                            <Button type='submit'>Update</Button>
-                            <Button color='red' onClick={() => handleDelete()}>Delete</Button>
-                        </Form>
-                }
-            </div>
+                <div>
+                    {
+                        isSubmitting
+                            ? <Loader active inline='centered' />
+                            : <Form onSubmit={handleSubmit}>
+                                <Form.Input
+                                    fluid
+                                    error={errors.total ? { content: 'Please enter the account name', pointing: 'below' } : null}
+                                    label='Account'
+                                    placeholder='Account'
+                                    name='account'
+                                    value={form.account}
+                                    onChange={handleChange}
+                                />
+                                <Form.Input
+                                    fluid
+                                    label='Account Balance'
+                                    placeholder='Balance'
+                                    name='balance'
+                                    error={errors.balance ? { content: 'Please enter the account balance', pointing: 'below' } : null}
+                                    value={form.balance}
+                                    onChange={handleChange}
+                                />
+                                <Button size='mini' type='submit'>Update</Button>
+                                <Button size='mini' color='red' onClick={() => handleDelete()}>Delete</Button>
+                                <Button size='mini' onClick={() => handleBack()}>Cancel</Button>
+                            </Form>
+                    }
+                </div>
         </EditContainer>
-    )
-}
+    </>
+};
 
 EditIce.getInitialProps = async ({ query: { id } }) => {
     try {
@@ -121,6 +126,6 @@ EditIce.getInitialProps = async ({ query: { id } }) => {
     } catch (error) {
         return { error }
     }
-}
+};
 
 export default EditIce;

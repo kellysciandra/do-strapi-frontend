@@ -25,12 +25,9 @@ const AddItemContainer = styled.div`
 `;
 
 const EditItemsContainer = styled.div`
-
     font-family: 'IBM Plex Mono', monospace;
     margin: auto;
     width: 50vw;
-
-
     @media ${device.mobileM} {
    
     }
