@@ -84,7 +84,7 @@ const Navbar = () => (
         </NavLink>
         <NavLink>
             <Link href="/past">
-                <a className="navlink">Today's Order</a>
+                <a className="navlink">Daily Order</a>
             </Link>
         </NavLink>
         <NavLink>

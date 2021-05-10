@@ -109,7 +109,10 @@ const Past = ({ orders }) => {
     }
     return <>
         <ItemsContainer>
-            <DateHeader>{todaysDate()}</DateHeader>
+            {!allOpenOrders ?
+                <DateHeader>{todaysDate()}</DateHeader>
+            : <DateHeader>All Open Orders</DateHeader> }
+            
             <div onClick={() => toggleOpenOrders()} style={{cursor: 'pointer', textAlign: 'center', marginBottom: '50px', color: 'blue'}}>{!allOpenOrders ? 'Display All Open Orders' : 'Show Todays Order Only' }</div>
                 { !allOpenOrders &&
                     orders ? orders.map((x) => {
