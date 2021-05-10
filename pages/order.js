@@ -10,22 +10,11 @@ import axios from 'axios';
 import {isMobile} from 'react-device-detect';
 
 
-const Order = () => {
+const Order = ({ products }) => {
     const [currentItem, setCurrentItem] = useState({});
     const [currentOrder, setCurrentOrder] = useState([]);
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const [products, setProducts] = useState();
-
-    useEffect(() => {
-        axios({
-            "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500"
-        })
-        .then((response) => {
-            setProducts(response.data)
-        })
-    }, []);
 
     useEffect(() => {
         if (isMobile) {
@@ -69,7 +58,6 @@ const Order = () => {
     }
  
     return <>
-
         <ItemsContainer>
             <ItemsHeader>Place an order</ItemsHeader>
                 <Table unstackable celled>
@@ -111,6 +99,12 @@ const Order = () => {
                 </Table>
         </ItemsContainer>
   </>
+}
+
+Order.getInitialProps = async (ctx) => {
+    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500');
+    const data = await res.json();
+    return { products: data }
 }
 
 export default Order;

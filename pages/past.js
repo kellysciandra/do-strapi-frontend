@@ -1,15 +1,14 @@
 import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
-import {ItemsContainer, ItemsHeader, CardContainer, DateHeader} from '../styles/index.styles'
+import React, { useEffect, useState } from 'react';
+import {ItemsContainer, CardContainer, DateHeader} from '../styles/index.styles'
 import moment from 'moment'
-import { Button, Card, Modal } from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import {isMobile} from 'react-device-detect';
 
 const Past = ({ orders }) => {
     const [targetItem, setTargetItem] = useState();
+    const [allOpenOrders, setAllOpenOrders] = useState(false);
     const today = new Date();
     const todaysDate = () => convertDate(today)
     const router = useRouter();
@@ -27,7 +26,10 @@ const Past = ({ orders }) => {
         .then((response) => {
             console.log(response)
             handleDelete(targetItem.id)
-        }) : null
+        }) 
+        .catch(error => {
+            console.log(error.response.data.error)
+         }) : null
     }, [targetItem])
 
     useEffect(() => {
@@ -72,6 +74,9 @@ const Past = ({ orders }) => {
         .then((response) => {
             console.log(response)
         })
+        .catch(error => {
+            console.log(error.response.data.error)
+         })
 
         deleteX
         router.push("/past");
@@ -88,6 +93,9 @@ const Past = ({ orders }) => {
         .then((response) => {
             console.log(response)
         })
+        .catch(error => {
+            console.log(error.response.data.error)
+         })
         run
         handleDelete(x.id)
     }
@@ -96,10 +104,14 @@ const Past = ({ orders }) => {
         window.location.reload(false);
     }
 
+    const toggleOpenOrders = () => {
+        setAllOpenOrders(!allOpenOrders)
+    }
     return <>
         <ItemsContainer>
             <DateHeader>{todaysDate()}</DateHeader>
-                {
+            <div onClick={() => toggleOpenOrders()} style={{cursor: 'pointer', textAlign: 'center', marginBottom: '50px', color: 'blue'}}>{!allOpenOrders ? 'Display All Open Orders' : 'Show Todays Order Only' }</div>
+                { !allOpenOrders &&
                     orders ? orders.map((x) => {
                         const lastNightsOrder = convertToDate(x.date, true)
                         const todaysDate = convertDate(today)
@@ -115,12 +127,12 @@ const Past = ({ orders }) => {
                                                     size="tiny" 
                                                     color="red"
                                                     onClick={() => handleDelete(x.id)}
-                                                ><FontAwesomeIcon  icon={faTrash}/></Button>
+                                                >Out of Stock</Button>
                                                 <Button 
                                                     size="tiny" 
                                                     color="green"
                                                     onClick={() => handleSuccess(x)}
-                                                ><FontAwesomeIcon icon={faCheckSquare}/></Button> 
+                                                >In Stock</Button> 
                                         </Card.Content>
                                     </Card>
                                 </Card.Group> 
@@ -129,6 +141,7 @@ const Past = ({ orders }) => {
                         }
                     }): null
                 }
+                {allOpenOrders && <AllOrders deleteOrder={handleDelete} success={handleSuccess} orders={orders}/>}
         </ItemsContainer>
     </>
 };
@@ -141,3 +154,34 @@ Past.getInitialProps = async (ctx) => {
 }
 
 export default Past;
+
+
+const AllOrders = ({orders, deleteOrder, success}) => {
+    return <>
+            {
+                orders ? orders.map((x) => {
+                        return <>
+                        <CardContainer>
+                            <Card.Group>
+                                <Card style={{alignItems: 'center'}}>
+                                    <Card.Content extra description={`${x.name} - ${x.qty}`}/>
+                                    <Card.Content extra>
+                                                <Button 
+                                                    size="tiny" 
+                                                    color="red"
+                                                    onClick={() => deleteOrder(x.id)}
+                                                >Out of Stock</Button>
+                                                <Button 
+                                                    size="tiny" 
+                                                    color="green"
+                                                    onClick={() => success(x)}
+                                                >In Stock</Button> 
+                                        </Card.Content>
+                                </Card>
+                            </Card.Group> 
+                        </CardContainer>        
+                        </>
+                }): null
+            }
+    </>
+}

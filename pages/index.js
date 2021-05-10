@@ -1,21 +1,8 @@
 import Link from 'next/link';
 import { Button, Table } from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
-const Index = () => {
-    const [products, setProducts] = useState();
-
-    useEffect(() => {
-        axios({
-            "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500"
-        })
-        .then((response) => {
-            setProducts(response.data)
-        })
-    }, []);
+const Index = ({ products }) => {
 
     const itemTag = (tag) => {
         if (tag === 'Paper') {
@@ -73,5 +60,11 @@ const Index = () => {
         </ItemsContainer>
     </>
 };
+
+Index.getInitialProps = async (ctx) => {
+    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500');
+    const data = await res.json();
+    return { products: data }
+}
 
 export default Index;
