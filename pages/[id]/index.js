@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react';
 import { Router, useRouter } from 'next/router';
-import { Card, Confirm, Button, Loader } from 'semantic-ui-react';
+import { Card, Confirm, Button, Loader, Input } from 'semantic-ui-react';
 import {CardContainer, ButtonContainer, ItemsContainer, ItemsHeader} from '../../styles/index.styles';
 import Link from 'next/link';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import {isMobile} from 'react-device-detect';
 const Item = ({ item }) => {
     const [confirm, setConfirm] = useState(false);
     const [products, setProducts] = useState()
+    const [caseSize, setCaseSize] = useState();
     const [isDeleting, setIsDeleting] = useState(false);
     const router = useRouter();
 
@@ -46,6 +47,12 @@ const Item = ({ item }) => {
         close();
     }
 
+    const handleChange = (e) => {
+        setCaseSize(
+            item.cost / e.target.value  
+        )
+    }
+
     return (
         <ItemsContainer>
             {isDeleting 
@@ -58,6 +65,16 @@ const Item = ({ item }) => {
                             <Card.Content description={`Total: ${item.qty}`}/>
                             <Card.Content description={`${item.tag}`}/>
                             <Card.Content description={`Cost: ${item.cost}`}/>
+                          
+                            <Card.Content>
+                                <Input
+                                    placeholder="Case Size"
+                                    size="mini"
+                                    onChange={handleChange}
+                                />
+                            </Card.Content>
+                            <Card.Content description={`Cost Per Bottle: ${caseSize} `}/>
+                           
                             <Card.Content description={`Vendor: ${item.vendor}`}/>
                             <Card.Content extra>
                                 <Button size='mini' color="red" onClick={open}>Delete</Button>
