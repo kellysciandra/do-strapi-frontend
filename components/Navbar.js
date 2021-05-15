@@ -8,9 +8,9 @@ const options = [
       text: 'Food',
       value: 1,
       content: (
-      
-        <a href="/food" className="navlink">Food</a>
-     
+        <Link href="/food">
+        <a className="navlink">Food</a>
+        </Link>
       ),
     },
     {
@@ -18,9 +18,9 @@ const options = [
       text: 'Beer, Wine, Liquor',
       value: 2,
       content: (
-      
-        <a href="/liquor" className="navlink">Beer, Wine, Liquor</a>
-    
+        <Link href="/liquor">
+        <a className="navlink">Beer, Wine, Liquor</a>
+        </Link>
       ),
     },
     {
@@ -28,9 +28,9 @@ const options = [
       text: 'Paper',
       value: 3,
       content: (
-    
-        <a href="/paper" className="navlink">Paper</a>
-       
+        <Link href="/paper">
+        <a className="navlink">Paper</a>
+        </Link>
       ),
     },
     {
@@ -38,9 +38,9 @@ const options = [
         text: 'T-Shirts',
         value: 4,
         content: (
-        
-          <a href="/tshirt" className="navlink">Tshirts</a>
-         
+          <Link href="/tshirt">
+          <a className="navlink">Tshirts</a>
+          </Link>
         ),
     },
       {
@@ -48,9 +48,9 @@ const options = [
         text: 'Chemicals',
         value: 5,
         content: (
-         
-          <a href="/chemical" className="navlink">Chemicals</a>
-         
+          <Link href="/chemical">
+          <a className="navlink">Chemicals</a>
+          </Link>
         ),
     },
     {
@@ -58,9 +58,9 @@ const options = [
         text: 'Coke',
         value: 6,
         content: (
-        
-          <a href="/coke" className="navlink">Coke Products</a>
-       
+          <Link href="/coke">
+          <a className="navlink">Coke Products</a>
+          </Link>
         ),
     },
   ]
@@ -68,37 +68,37 @@ const options = [
 const Navbar = () => (
     <NavbarContainer>
         <NavLink>
-            <Link href="/">
-                <a className="navlink">Home</a>
+            <Link prefetch href="/">
+                Home
             </Link>
         </NavLink>
         <NavLink>
-            <Link href="/new">
-                <a className="navlink">Add New Item</a>
+            <Link prefetch href="/new">
+                Add New Item
             </Link>
         </NavLink>
         <NavLink>
-            <Link href="/order">
-                <a className="navlink">Add To Order</a>
+            <Link prefetch href="/order">
+                Add To Order
             </Link>
         </NavLink>
         <NavLink>
-            <Link href="/past">
-                <a className="navlink">Daily Order</a>
+            <Link prefetch href="/past">
+                Daily Order
             </Link>
         </NavLink>
         <NavLink>
-            <Link href="/ice">
-                <a className="navlink">Ice Accounts</a>
+            <Link prefetch href="/ice">
+                Ice Accounts
             </Link>
         </NavLink>
         <SearchLink>
-            <Link href="/search">
-                <a className="navlink">Search</a>
+            <Link prefetch href="/search">
+                Search
             </Link>
         </SearchLink>
         <DropDownLink>
-            <Dropdown selection  options={options} placeholder='Choose an option' />
+            <Dropdown  selection  options={options} placeholder='Choose an option' />
         </DropDownLink>
     </NavbarContainer>
 )
