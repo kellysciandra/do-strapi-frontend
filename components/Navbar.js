@@ -8,9 +8,9 @@ const options = [
       text: 'Food',
       value: 1,
       content: (
-        <Link href="/food">
-        <a className="navlink">Food</a>
-        </Link>
+      
+        <a href="/food" className="navlink">Food</a>
+     
       ),
     },
     {
@@ -18,9 +18,9 @@ const options = [
       text: 'Beer, Wine, Liquor',
       value: 2,
       content: (
-        <Link href="/liquor">
-        <a className="navlink">Beer, Wine, Liquor</a>
-        </Link>
+      
+        <a href="/liquor" className="navlink">Beer, Wine, Liquor</a>
+    
       ),
     },
     {
@@ -28,9 +28,9 @@ const options = [
       text: 'Paper',
       value: 3,
       content: (
-        <Link href="/paper">
-        <a className="navlink">Paper</a>
-        </Link>
+    
+        <a href="/paper" className="navlink">Paper</a>
+       
       ),
     },
     {
@@ -38,9 +38,9 @@ const options = [
         text: 'T-Shirts',
         value: 4,
         content: (
-          <Link href="/tshirt">
-          <a className="navlink">Tshirts</a>
-          </Link>
+        
+          <a href="/tshirt" className="navlink">Tshirts</a>
+         
         ),
     },
       {
@@ -48,9 +48,9 @@ const options = [
         text: 'Chemicals',
         value: 5,
         content: (
-          <Link href="/chemical">
-          <a className="navlink">Chemicals</a>
-          </Link>
+         
+          <a href="/chemical" className="navlink">Chemicals</a>
+         
         ),
     },
     {
@@ -58,9 +58,9 @@ const options = [
         text: 'Coke',
         value: 6,
         content: (
-          <Link href="/coke">
-          <a className="navlink">Coke Products</a>
-          </Link>
+        
+          <a href="/coke" className="navlink">Coke Products</a>
+       
         ),
     },
   ]

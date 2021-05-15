@@ -5,6 +5,8 @@ import moment from 'moment'
 import { Button, Card } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import {isMobile} from 'react-device-detect';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faCheckDouble } from '@fortawesome/free-solid-svg-icons'
 
 const Past = ({ orders }) => {
     const [targetItem, setTargetItem] = useState();
@@ -110,9 +112,8 @@ const Past = ({ orders }) => {
     return <>
         <ItemsContainer>
             {!allOpenOrders ?
-                <DateHeader>{todaysDate()}</DateHeader>
+            <DateHeader>{todaysDate()}</DateHeader>
             : <DateHeader>All Open Orders</DateHeader> }
-            
             <div onClick={() => toggleOpenOrders()} style={{cursor: 'pointer', textAlign: 'center', marginBottom: '50px', color: 'blue'}}>{!allOpenOrders ? 'Display All Open Orders' : 'Show Todays Order Only' }</div>
                 { !allOpenOrders &&
                     orders ? orders.map((x) => {
@@ -130,12 +131,12 @@ const Past = ({ orders }) => {
                                                     size="tiny" 
                                                     color="red"
                                                     onClick={() => handleDelete(x.id)}
-                                                >Out of Stock</Button>
+                                                ><FontAwesomeIcon icon={faTrash} /></Button>
                                                 <Button 
                                                     size="tiny" 
                                                     color="green"
                                                     onClick={() => handleSuccess(x)}
-                                                >In Stock</Button> 
+                                                ><FontAwesomeIcon icon={faCheckDouble} /></Button> 
                                         </Card.Content>
                                     </Card>
                                 </Card.Group> 
@@ -172,13 +173,13 @@ const AllOrders = ({orders, deleteOrder, success}) => {
                                                 <Button 
                                                     size="tiny" 
                                                     color="red"
-                                                    onClick={() => deleteOrder(x.id)}
-                                                >Out of Stock</Button>
+                                                    onClick={() => handleDelete(x.id)}
+                                                ><FontAwesomeIcon icon={faTrash} /></Button>
                                                 <Button 
                                                     size="tiny" 
                                                     color="green"
-                                                    onClick={() => success(x)}
-                                                >In Stock</Button> 
+                                                    onClick={() => handleSuccess(x)}
+                                                ><FontAwesomeIcon icon={faCheckDouble} /></Button> 
                                         </Card.Content>
                                 </Card>
                             </Card.Group> 
