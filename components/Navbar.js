@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Dropdown } from 'semantic-ui-react';
-import {DropDownLink, NavbarContainer, NavLink, SearchLink} from './nav.styles.js'
+import {DropDownLink, NavbarContainer, NavLink, SearchLink, IceLink} from './nav.styles.js'
 
 const options = [
     {
@@ -88,10 +88,15 @@ const Navbar = () => (
             </Link>
         </NavLink>
         <NavLink>
+            <Link prefetch href="/stockReport">
+                Stock Reports
+            </Link>
+        </NavLink>
+        <IceLink>
             <Link prefetch href="/ice">
                 Ice Accounts
             </Link>
-        </NavLink>
+        </IceLink>
         <SearchLink>
             <Link prefetch href="/search">
                 Search

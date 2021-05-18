@@ -1,13 +1,12 @@
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import {EditContainer, ItemsHeader} from '../../styles/index.styles'
+import {EditContainer} from '../../styles/index.styles'
 import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
 const Edit = ({ item }) => {
-    const [form, setForm] = useState({ name: item.name, qty: item.qty, tag: item.tag, cost: item.cost, vendor: item.vendor });
+    const [form, setForm] = useState({ name: item.name, qty: item.qty, tag: item.tag, cost: item.cost, vendor: item.vendor, sort_1: item.sort_1 });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
@@ -108,6 +107,15 @@ const Edit = ({ item }) => {
                                 name='cost'
                                 error={errors.cost ? { content: 'Please enter a cost', pointing: 'below' } : null}
                                 value={form.cost}
+                                onChange={handleChange}
+                            />
+                            <Form.Input
+                                fluid
+                                label='Case Size'
+                                placeholder='Case Size'
+                                name='sort_1'
+                                error={errors.sort_1 ? { content: 'Please enter a case size', pointing: 'below' } : null}
+                                value={form.sort_1}
                                 onChange={handleChange}
                             />
                             <Form.Input

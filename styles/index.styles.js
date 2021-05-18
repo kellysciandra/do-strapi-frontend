@@ -145,6 +145,19 @@ const ButtonContainer = styled.div`
     justify-content: center;
 `;
 
+const OutOfStockHeader = styled.div`
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 2em 0;
+
+    @media ${device.mobileM} {
+        width: 100%;
+        margin: 2em 0 1em 0;
+        text-decoration: underline;
+    }
+`
 
 
-export {EditHeader, DateHeader, EditContainer, EditItemsContainer, AddItemContainer, ItemsContainer, CardContainer, ButtonContainer, ItemsHeader, ListContainer, OrderContainer, OrderHeader, ListTitle, OrderSubmit, ListButton, CurrentOrderContainer, CurrentOrderSubmit}
+
+export {OutOfStockHeader, EditHeader, DateHeader, EditContainer, EditItemsContainer, AddItemContainer, ItemsContainer, CardContainer, ButtonContainer, ItemsHeader, ListContainer, OrderContainer, OrderHeader, ListTitle, OrderSubmit, ListButton, CurrentOrderContainer, CurrentOrderSubmit}
