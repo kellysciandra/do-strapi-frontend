@@ -63,7 +63,7 @@ const StockReport = ({ products }) => {
           body: JSON.stringify(data)
         }).then((res) => {
             console.log('Response received')
-            router.push("/stockReport");
+            router.push("/");
         })
     }
 
