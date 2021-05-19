@@ -109,7 +109,7 @@ const Edit = ({ item }) => {
                                 value={form.cost}
                                 onChange={handleChange}
                             />
-                            <Form.Input
+                            {/* <Form.Input
                                 fluid
                                 label='Case Size'
                                 placeholder='Case Size'
@@ -117,7 +117,7 @@ const Edit = ({ item }) => {
                                 error={errors.sort_1 ? { content: 'Please enter a case size', pointing: 'below' } : null}
                                 value={form.sort_1}
                                 onChange={handleChange}
-                            />
+                            /> */}
                             <Form.Input
                                 fluid
                                 label='Vendor'
