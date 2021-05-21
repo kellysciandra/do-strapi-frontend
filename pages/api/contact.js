@@ -5,15 +5,15 @@ export default function (req, res) {
     const transporter = nodemailer.createTransport({
       port: 465,     
       host: "smtp.gmail.com",
-         auth: {
-              user: 'nancysinventory1960@gmail.com',
-              pass: 'Since1960',
-           },
+        auth: {
+            user: 'inventoryinventory1960@gmail.com',
+            pass: 'Since1960',
+        },
       secure: true,
     });
     
     const mailData = {
-        from: 'nancysinventory1960@gmail.com',
+        from: 'inventoryinventory1960@gmail.com',
         to: req.body.form.email,
         subject: `Message From The Captain`,
         text: req.body.message + " | Sent from: " + req.body.email,
@@ -32,4 +32,6 @@ export default function (req, res) {
   
     console.log(req.body)
     res.send('success')
+    res.status(200)
+ 
   }
