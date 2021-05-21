@@ -10,6 +10,9 @@ export default function (req, res) {
             pass: 'Since1960',
         },
       secure: true,
+      tls: {
+        rejectUnauthorized: false
+    }
     });
     
     const mailData = {
