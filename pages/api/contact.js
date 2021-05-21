@@ -23,12 +23,13 @@ export default function (req, res) {
             </p>`
     }
   
-    transporter.sendMail(mailData, function (err, info) {
-        if(err)
-          console.log(err)
-        else
-          console.log(info);
-    })
+    transporter.sendMail(mailData, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
   
     console.log(req.body)
     res.send('success')
