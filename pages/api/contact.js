@@ -20,7 +20,8 @@ export default function (req, res) {
         to: req.body.form.email,
         subject: `Message From The Captain`,
         text: req.body.message + " | Sent from: " + req.body.email,
-        html: `<h1>Out Of Stock</h1>
+        html: `<h1>Out of Stock</h1>
+                <h2>Less than 2 cases left</h2>
             <p>
                 ${req.body.test}
             </p>`
