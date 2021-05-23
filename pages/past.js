@@ -38,7 +38,7 @@ const Past = ({ orders }) => {
         if (isMobile) {
             window.scrollTo({ top: 350, behavior: 'smooth' })
         }
-    })
+    }, []);
 
     const convertToDate = (stringFromData, short) => {
         const splitTime = stringFromData.split("T");
@@ -109,6 +109,7 @@ const Past = ({ orders }) => {
     const toggleOpenOrders = () => {
         setAllOpenOrders(!allOpenOrders)
     }
+    
     return <>
         <ItemsContainer>
             {!allOpenOrders ?

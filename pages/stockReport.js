@@ -27,7 +27,7 @@ const StockReport = ({ products }) => {
         if (isMobile) {
             window.scrollTo({ top: 350, behavior: 'smooth' })
         }
-    });
+    }, []);
 
     const handleChange = (e) => {
         setForm({

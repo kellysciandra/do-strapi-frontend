@@ -24,7 +24,7 @@ const Item = ({ item }) => {
         if (isMobile) {
             window.scrollTo({ top: 350, behavior: 'smooth' })
         }
-    });
+    }, []);
 
     const open = () => setConfirm(true);
     

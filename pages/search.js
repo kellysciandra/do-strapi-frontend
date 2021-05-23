@@ -13,8 +13,6 @@ const Search = () => {
     const [currentOrder, setCurrentOrder] = useState([]);
     const [open, setOpen] = useState(false);
  
-
-
     useEffect(() => {
         axios({
             "method": "GET",
@@ -29,8 +27,7 @@ const Search = () => {
         if (isMobile) {
             window.scrollTo({ top: 350, behavior: 'smooth' })
         }
-    })
-
+    }, []);
 
     const itemTag = (tag) => {
         if (tag === 'Paper') {
@@ -50,13 +47,11 @@ const Search = () => {
 
     const handleChange = (e) => {
          let newList = [];
-
          newList = products.filter(x => {
              const lc = x.name.toLowerCase();
              const search = e.target.value.toLowerCase();
              return lc.includes(search)
          })
-
          setSearchedItems(newList)
     }
 

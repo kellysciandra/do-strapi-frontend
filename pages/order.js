@@ -2,11 +2,10 @@ import Link from 'next/link';
 import React, { useEffect } from 'react'
 import fetch from 'isomorphic-unfetch';
 import EditOrder from '../components/EditOrder';
-import { Button, Modal,Table, Grid, Input, Popup } from 'semantic-ui-react';
+import { Button, Table, Popup } from 'semantic-ui-react';
 import { ItemsHeader, ItemsContainer } from '../styles/index.styles'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import {isMobile} from 'react-device-detect';
 
 
@@ -20,7 +19,7 @@ const Order = ({ products }) => {
         if (isMobile) {
             window.scrollTo({ top: 350, behavior: 'smooth' })
         }
-    })
+    }, []);
 
     const updateModal = (x) => {
         setOpen(x)

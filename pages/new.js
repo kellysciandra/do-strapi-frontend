@@ -27,7 +27,7 @@ const NewItem = () => {
         if (isMobile) {
             window.scrollTo({ top: 350, behavior: 'smooth' })
         }
-    })
+    }, []);
 
     const createItem = async () => {
         try {
