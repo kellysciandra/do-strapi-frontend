@@ -26,7 +26,7 @@ const Edit = ({ item }) => {
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 425, behavior: 'smooth' })
+            window.scrollTo({ top: 450, behavior: 'smooth' })
         }
     }, []);
 
