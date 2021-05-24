@@ -25,7 +25,7 @@ const NewItem = () => {
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 350, behavior: 'smooth' })
+            window.scrollTo({ top: 500, behavior: 'smooth' })
         }
     }, []);
 
@@ -121,6 +121,7 @@ const NewItem = () => {
                                 onChange={handleChange}
                             />
                             <Button color='purple' type='submit'>Add</Button>
+                            <Button  color='green' onClick={() => router.back()}>cancel</Button>
                         </Form>
                 }
             </div>
