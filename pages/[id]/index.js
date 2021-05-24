@@ -22,7 +22,7 @@ const Item = ({ item }) => {
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 350, behavior: 'smooth' })
+            window.scrollTo({ top: 425, behavior: 'smooth' })
         }
     }, []);
 
@@ -81,7 +81,7 @@ const Item = ({ item }) => {
                                 <Link href={`/${item.id}/edit`}>
                                     <Button size='mini' color="orange">Edit</Button>
                                 </Link>
-                                <Button  color='green' size='mini' onClick={() => router.back()}>back</Button>
+                                <Button  color='green' size='mini' onClick={() => router.back()}>cancel</Button>
                             </Card.Content>
                         </Card>
                         </CardContainer> 

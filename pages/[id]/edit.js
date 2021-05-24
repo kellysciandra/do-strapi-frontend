@@ -4,6 +4,8 @@ import {EditContainer} from '../../styles/index.styles'
 import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import {isMobile} from 'react-device-detect';
+
 
 const Edit = ({ item }) => {
     const [form, setForm] = useState({ name: item.name, qty: item.qty, tag: item.tag, cost: item.cost, vendor: item.vendor, sort_1: item.sort_1 });
@@ -20,7 +22,13 @@ const Edit = ({ item }) => {
                 setIsSubmitting(false);
             }
         }
-    }, [errors])
+    }, [errors]);
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 425, behavior: 'smooth' })
+        }
+    }, []);
 
     const updateItem = async () => {
         try {
@@ -128,6 +136,7 @@ const Edit = ({ item }) => {
                                 onChange={handleChange}
                             />
                             <Button color='purple' type='submit'>Update</Button>
+                            <Button  color='green' onClick={() => router.back()}>cancel</Button>
                         </Form>
                 }
             </div>
