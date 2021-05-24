@@ -25,7 +25,7 @@ const NewItem = () => {
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 475, behavior: 'smooth' })
+            window.scrollTo({ top: 450, behavior: 'smooth' })
         }
     }, []);
 
