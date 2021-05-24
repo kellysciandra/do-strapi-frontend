@@ -17,7 +17,7 @@ const Order = ({ products }) => {
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 350, behavior: 'smooth' })
+            window.scrollTo({ top: 450, behavior: 'smooth' })
         }
     }, []);
 
