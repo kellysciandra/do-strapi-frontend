@@ -1,9 +1,5 @@
 
 import Link from 'next/link';
-<<<<<<< HEAD
-
-import {NavbarContainer, NavLink, SearchLink} from './nav.styles.js'
-=======
 import { Dropdown } from 'semantic-ui-react';
 import {DropDownLink, NavbarContainer, NavLink, SearchLink, IceLink} from './nav.styles.js'
 
@@ -69,7 +65,6 @@ const options = [
         ),
     },
   ]
->>>>>>> a460b9e1e2295157a29db0f2aa5d383ea70e8ecb
 
 const Navbar = () => (
     <NavbarContainer>
@@ -108,13 +103,9 @@ const Navbar = () => (
                 Search
             </Link>
         </SearchLink>
-<<<<<<< HEAD
-
-=======
         <DropDownLink>
             <Dropdown  selection  options={options} placeholder='Choose an option' />
         </DropDownLink>
->>>>>>> a460b9e1e2295157a29db0f2aa5d383ea70e8ecb
     </NavbarContainer>
 )
 
