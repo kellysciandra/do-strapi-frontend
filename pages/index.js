@@ -35,7 +35,7 @@ const Index = () => {
 
     return <>
         <ItemsContainer>
-            <ItemsHeader>Warehouse Inventory</ItemsHeader>
+            <ItemsHeader>Warehouse Inventory TEST</ItemsHeader>
                 <Table unstackable celled>
                     <Table.Header>
                     <Table.Row> 
