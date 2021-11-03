@@ -5,12 +5,7 @@ import { Card, Confirm, Button, Loader, Input } from 'semantic-ui-react';
 import {CardContainer, ItemsContainer } from '../../styles/index.styles';
 import Link from 'next/link';
 import axios from 'axios';
-<<<<<<< HEAD
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward } from '@fortawesome/free-solid-svg-icons'
-=======
 import {isMobile} from 'react-device-detect';
->>>>>>> a460b9e1e2295157a29db0f2aa5d383ea70e8ecb
 
 const Item = ({ item }) => {
     const [confirm, setConfirm] = useState(false);
@@ -72,13 +67,6 @@ const Item = ({ item }) => {
                             <Card.Content description={`Cost: ${item.cost || '...'}`}/>
                             <Card.Content description={`Vendor: ${item.vendor || '...'}`}/>
                             <Card.Content extra>
-<<<<<<< HEAD
-                                <Button size= 'mini' color="red" onClick={open}>Delete</Button>
-                                <Link href={`/${item.id}/edit`}>
-                                    <Button size='mini' color="orange">Edit</Button>
-                                </Link>
-                                <Button  fluid style={{ backgroundColor: 'white'}} color='white' size='mini' onClick={() => router.back()}>Back</Button> 
-=======
                                 <Input
                                     placeholder="Case Size / Total lbs"
                                     size="mini"
@@ -94,7 +82,6 @@ const Item = ({ item }) => {
                                     <Button size='mini' color="orange">Edit</Button>
                                 </Link>
                                 <Button  color='green' size='mini' onClick={() => router.back()}>cancel</Button>
->>>>>>> a460b9e1e2295157a29db0f2aa5d383ea70e8ecb
                             </Card.Content>
                         </Card>
                         </CardContainer> 
