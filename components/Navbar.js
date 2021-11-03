@@ -1,4 +1,6 @@
+
 import Link from 'next/link';
+
 import {NavbarContainer, NavLink, SearchLink} from './nav.styles.js'
 
 const Navbar = () => (
@@ -48,6 +50,7 @@ const Navbar = () => (
                 <a className="navlink">Search</a>
             </Link>
         </SearchLink>
+
     </NavbarContainer>
 )
 

@@ -5,7 +5,8 @@ import { Card, Confirm, Button, Loader } from 'semantic-ui-react';
 import {CardContainer, ButtonContainer, ItemsContainer, ItemsHeader} from '../../styles/index.styles';
 import Link from 'next/link';
 import axios from 'axios';
-import Index from '..';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackward } from '@fortawesome/free-solid-svg-icons'
 
 const Item = ({ item }) => {
     const [confirm, setConfirm] = useState(false);
@@ -54,10 +55,11 @@ const Item = ({ item }) => {
                             <Card.Content description={`Cost: ${item.cost}`}/>
                             <Card.Content description={`Vendor: ${item.vendor}`}/>
                             <Card.Content extra>
-                                <Button color="red" onClick={open}>Delete</Button>
+                                <Button size= 'mini' color="red" onClick={open}>Delete</Button>
                                 <Link href={`/${item.id}/edit`}>
-                                    <Button color="orange">Edit</Button>
+                                    <Button size='mini' color="orange">Edit</Button>
                                 </Link>
+                                <Button  fluid style={{ backgroundColor: 'white'}} color='white' size='mini' onClick={() => router.back()}>Back</Button> 
                             </Card.Content>
                         </Card>
                         </CardContainer> 
