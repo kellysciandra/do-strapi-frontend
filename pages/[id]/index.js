@@ -1,16 +1,21 @@
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Card, Confirm, Button, Loader } from 'semantic-ui-react';
-import {CardContainer, ButtonContainer, ItemsContainer, ItemsHeader} from '../../styles/index.styles';
+import { Card, Confirm, Button, Loader, Input } from 'semantic-ui-react';
+import {CardContainer, ItemsContainer } from '../../styles/index.styles';
 import Link from 'next/link';
 import axios from 'axios';
+<<<<<<< HEAD
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward } from '@fortawesome/free-solid-svg-icons'
+=======
+import {isMobile} from 'react-device-detect';
+>>>>>>> a460b9e1e2295157a29db0f2aa5d383ea70e8ecb
 
 const Item = ({ item }) => {
     const [confirm, setConfirm] = useState(false);
     const [products, setProducts] = useState()
+    const [caseSize, setCaseSize] = useState('...');
     const [isDeleting, setIsDeleting] = useState(false);
     const router = useRouter();
 
@@ -18,7 +23,13 @@ const Item = ({ item }) => {
         if (isDeleting) {
             deleteItem();
         }
-    }, [isDeleting])
+    }, [isDeleting]);
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 450, behavior: 'smooth' })
+        }
+    }, []);
 
     const open = () => setConfirm(true);
     
@@ -41,6 +52,12 @@ const Item = ({ item }) => {
         close();
     }
 
+    const handleChange = (e) => {
+        setCaseSize(
+            item.cost / e.target.value  
+        )
+    }
+
     return (
         <ItemsContainer>
             {isDeleting 
@@ -50,16 +67,34 @@ const Item = ({ item }) => {
                         <CardContainer>
                         <Card>
                             <Card.Content header={item.name} />
-                            <Card.Content description={`Total: ${item.qty}`}/>
-                            <Card.Content description={`${item.tag}`}/>
-                            <Card.Content description={`Cost: ${item.cost}`}/>
-                            <Card.Content description={`Vendor: ${item.vendor}`}/>
+                            <Card.Content description={`In Stock: ${item.qty}`}/>
+                            <Card.Content description={`Tag: ${item.tag}`}/>
+                            <Card.Content description={`Cost: ${item.cost || '...'}`}/>
+                            <Card.Content description={`Vendor: ${item.vendor || '...'}`}/>
                             <Card.Content extra>
+<<<<<<< HEAD
                                 <Button size= 'mini' color="red" onClick={open}>Delete</Button>
                                 <Link href={`/${item.id}/edit`}>
                                     <Button size='mini' color="orange">Edit</Button>
                                 </Link>
                                 <Button  fluid style={{ backgroundColor: 'white'}} color='white' size='mini' onClick={() => router.back()}>Back</Button> 
+=======
+                                <Input
+                                    placeholder="Case Size / Total lbs"
+                                    size="mini"
+                                    onChange={handleChange}
+                                />
+                            </Card.Content>
+                            <Card.Content description={`Cost Per: ${caseSize || '...'}`}/>
+                           
+                          
+                            <Card.Content>
+                                <Button size='mini' color="red" onClick={open}>Delete</Button>
+                                <Link href={`/${item.id}/edit`}>
+                                    <Button size='mini' color="orange">Edit</Button>
+                                </Link>
+                                <Button  color='green' size='mini' onClick={() => router.back()}>cancel</Button>
+>>>>>>> a460b9e1e2295157a29db0f2aa5d383ea70e8ecb
                             </Card.Content>
                         </Card>
                         </CardContainer> 
@@ -72,6 +107,7 @@ const Item = ({ item }) => {
                 onConfirm={handleDelete}
             />
         </ItemsContainer>
+        
     )
 };
 

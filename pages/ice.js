@@ -40,7 +40,7 @@ const Ice = ({ accounts }) => {
         if (isMobile) {
             window.scrollTo({ top: 350, behavior: 'smooth' })
         }
-    })
+    }, []);
 
     const createItem = async () => {
         try {
@@ -109,7 +109,7 @@ const Ice = ({ accounts }) => {
                                 name='balance'
                                 onChange={handleChange}
                             />
-                            <Button type='submit'>Add</Button>
+                            <Button color='purple' type='submit'>Add</Button>
                         </Form>
                 }
             </div>

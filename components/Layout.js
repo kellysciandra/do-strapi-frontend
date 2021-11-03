@@ -10,7 +10,7 @@ const Layout = ({ children }) => (
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=IBM+Plex+Mono&display=swap" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css"></link>
-        <script src="https://kit.fontawesome.com/dcfabf23b2.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/dcfabf23b2.js" crossOrigin="anonymous"></script>
       </Head>
       <Navbar />
       {children}

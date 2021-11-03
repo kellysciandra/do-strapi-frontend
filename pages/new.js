@@ -25,9 +25,9 @@ const NewItem = () => {
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 350, behavior: 'smooth' })
+            window.scrollTo({ top: 450, behavior: 'smooth' })
         }
-    })
+    }, []);
 
     const createItem = async () => {
         try {
@@ -99,7 +99,7 @@ const NewItem = () => {
                             <Form.Input
                                 fluid
                                 label='Tag'
-                                placeholder='Tag'
+                                placeholder='Food, Paper, Liquor, Chemical, TShirt'
                                 name='tag'
                                 error={errors.tag ? { content: 'Please enter a tag', pointing: 'below' } : null}
                                 onChange={handleChange}
@@ -120,7 +120,8 @@ const NewItem = () => {
                                 error={errors.vendor ? { content: 'Please enter a vendor', pointing: 'below' } : null}
                                 onChange={handleChange}
                             />
-                            <Button type='submit'>Add</Button>
+                            <Button color='purple' type='submit'>Add</Button>
+                            <Button  color='green' onClick={() => router.back()}>cancel</Button>
                         </Form>
                 }
             </div>

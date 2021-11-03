@@ -4,6 +4,7 @@ import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditOrder from '../components/EditOrder';
+import {isMobile} from 'react-device-detect';
 
 const Search = () => {
     const [products, setProducts] = useState();
@@ -11,8 +12,7 @@ const Search = () => {
     const [currentItem, setCurrentItem] = useState({});
     const [currentOrder, setCurrentOrder] = useState([]);
     const [open, setOpen] = useState(false);
-
-
+ 
     useEffect(() => {
         axios({
             "method": "GET",
@@ -23,6 +23,11 @@ const Search = () => {
         })
     }, []);
 
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 500, behavior: 'smooth' })
+        }
+    }, []);
 
     const itemTag = (tag) => {
         if (tag === 'Paper') {
@@ -42,13 +47,11 @@ const Search = () => {
 
     const handleChange = (e) => {
          let newList = [];
-
          newList = products.filter(x => {
              const lc = x.name.toLowerCase();
              const search = e.target.value.toLowerCase();
              return lc.includes(search)
          })
-
          setSearchedItems(newList)
     }
 

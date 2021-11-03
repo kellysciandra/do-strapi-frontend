@@ -2,36 +2,24 @@ import Link from 'next/link';
 import React, { useEffect } from 'react'
 import fetch from 'isomorphic-unfetch';
 import EditOrder from '../components/EditOrder';
-import { Button, Modal,Table, Grid, Input, Popup } from 'semantic-ui-react';
+import { Button, Table, Popup } from 'semantic-ui-react';
 import { ItemsHeader, ItemsContainer } from '../styles/index.styles'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import {isMobile} from 'react-device-detect';
 
 
-const Order = () => {
+const Order = ({ products }) => {
     const [currentItem, setCurrentItem] = useState({});
     const [currentOrder, setCurrentOrder] = useState([]);
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const [products, setProducts] = useState();
-
-    useEffect(() => {
-        axios({
-            "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500"
-        })
-        .then((response) => {
-            setProducts(response.data)
-        })
-    }, []);
 
     useEffect(() => {
         if (isMobile) {
-            window.scrollTo({ top: 350, behavior: 'smooth' })
+            window.scrollTo({ top: 450, behavior: 'smooth' })
         }
-    })
+    }, []);
 
     const updateModal = (x) => {
         setOpen(x)
@@ -53,8 +41,14 @@ const Order = () => {
             return 'blue'
         } else if (tag === 'Liquor') {
             return 'green'
+        } else if (tag === 'Chemical') {
+            return 'purple'
+        } else if (tag === 'Coke') {
+            return 'orange'
+        } else if (tag === 'TShirt') {
+            return 'pink'
         }
-    }
+    };
 
     const itemQuantity = (qty) => {
         if (qty <= 0) {
@@ -63,7 +57,6 @@ const Order = () => {
     }
  
     return <>
-
         <ItemsContainer>
             <ItemsHeader>Place an order</ItemsHeader>
                 <Table unstackable celled>
@@ -105,6 +98,12 @@ const Order = () => {
                 </Table>
         </ItemsContainer>
   </>
+}
+
+Order.getInitialProps = async (ctx) => {
+    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500');
+    const data = await res.json();
+    return { products: data }
 }
 
 export default Order;

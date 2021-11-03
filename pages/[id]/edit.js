@@ -1,13 +1,14 @@
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import {EditContainer, ItemsHeader} from '../../styles/index.styles'
+import {EditContainer} from '../../styles/index.styles'
 import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import {isMobile} from 'react-device-detect';
+
 
 const Edit = ({ item }) => {
-    const [form, setForm] = useState({ name: item.name, qty: item.qty, tag: item.tag, cost: item.cost, vendor: item.vendor });
+    const [form, setForm] = useState({ name: item.name, qty: item.qty, tag: item.tag, cost: item.cost, vendor: item.vendor, sort_1: item.sort_1 });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
@@ -21,7 +22,13 @@ const Edit = ({ item }) => {
                 setIsSubmitting(false);
             }
         }
-    }, [errors])
+    }, [errors]);
+
+    useEffect(() => {
+        if (isMobile) {
+            window.scrollTo({ top: 450, behavior: 'smooth' })
+        }
+    }, []);
 
     const updateItem = async () => {
         try {
@@ -110,6 +117,15 @@ const Edit = ({ item }) => {
                                 value={form.cost}
                                 onChange={handleChange}
                             />
+                            {/* <Form.Input
+                                fluid
+                                label='Case Size'
+                                placeholder='Case Size'
+                                name='sort_1'
+                                error={errors.sort_1 ? { content: 'Please enter a case size', pointing: 'below' } : null}
+                                value={form.sort_1}
+                                onChange={handleChange}
+                            /> */}
                             <Form.Input
                                 fluid
                                 label='Vendor'
@@ -119,7 +135,8 @@ const Edit = ({ item }) => {
                                 value={form.vendor}
                                 onChange={handleChange}
                             />
-                            <Button type='submit'>Update</Button>
+                            <Button color='purple' type='submit'>Update</Button>
+                            <Button  color='green' onClick={() => router.back()}>cancel</Button>
                         </Form>
                 }
             </div>
