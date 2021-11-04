@@ -1,8 +1,21 @@
 import Link from 'next/link';
 import { Button, Table } from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Index = ({ products }) => {
+const Index = () => {
+    const [products, setProducts] = useState();
+
+    useEffect(() => {
+        axios({
+            "method": "GET",
+            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500"
+        })
+        .then((response) => {
+            setProducts(response.data)
+        })
+    }, []);
 
     const itemTag = (tag) => {
         if (tag === 'Paper') {
@@ -11,12 +24,6 @@ const Index = ({ products }) => {
             return 'blue'
         } else if (tag === 'Liquor') {
             return 'green'
-        } else if (tag === 'Chemical') {
-            return 'purple'
-        } else if (tag === 'Coke') {
-            return 'orange'
-        } else if (tag === 'TShirt') {
-            return 'pink'
         }
     };
 
@@ -28,7 +35,7 @@ const Index = ({ products }) => {
 
     return <>
         <ItemsContainer>
-            <ItemsHeader>Warehouse Inventory TEST</ItemsHeader>
+            <ItemsHeader>Warehouse Inventory</ItemsHeader>
                 <Table unstackable celled>
                     <Table.Header>
                     <Table.Row> 
@@ -60,11 +67,5 @@ const Index = ({ products }) => {
         </ItemsContainer>
     </>
 };
-
-Index.getInitialProps = async (ctx) => {
-    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500');
-    const data = await res.json();
-    return { products: data }
-}
 
 export default Index;
