@@ -2,8 +2,20 @@ import Link from 'next/link';
 import { Button, Table} from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-const Paper = ({ items }) => {
+const Paper = () => {
+    const [items, setItems] = useState();
+
+    useEffect(() => {
+        axios({
+            "method": "GET",
+            "url": "http://localhost:1337/api/products"
+        })
+        .then((response) => {
+            setItems(response.data.data)
+        })
+    }, []);
 
     const itemQuantity = (qty) => {
         if (qty <= 0) {
@@ -24,16 +36,16 @@ const Paper = ({ items }) => {
                 </Table.Header>
     
                 {items ? items.map(item => {
-                    if (item.tag === 'Paper')
+                    if (item.attributes.tag === 'Paper')
                     return <>
                         <Table.Body>
                         <Table.Row>
                             <Table.Cell>
-                                <Link href={`/${item.id}`}>
-                                    <a style={{color: 'red'}}>{item.name}</a>
+                                <Link legacyBehavior href={`/${item.id}`}>
+                                    <a style={{color: 'orange'}}>{item.attributes.name}</a>
                                 </Link>
                             </Table.Cell>
-                            <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.qty}</Table.Cell>
+                            <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.attributes.qty}</Table.Cell>
                             <Table.Cell collapsing textAlign='right'>
                                 <Link href={`/${item.id}`}>
                                     <Button primary>View</Button>
@@ -46,16 +58,6 @@ const Paper = ({ items }) => {
             </Table>
         </ItemsContainer>
     </>
-}
-
-Paper.getInitialProps = async () => {
-    try {
-        const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500`);
-        const items = res.data
-        return {items};
-    } catch (error) {
-        return { error }
-    }
 }
 
 export default Paper;

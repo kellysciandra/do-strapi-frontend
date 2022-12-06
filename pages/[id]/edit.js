@@ -8,7 +8,7 @@ import {isMobile} from 'react-device-detect';
 
 
 const Edit = ({ item }) => {
-    const [form, setForm] = useState({ name: item.name, qty: item.qty, tag: item.tag, cost: item.cost, vendor: item.vendor, sort_1: item.sort_1 });
+    const [form, setForm] = useState({ name: item.attributes.name, qty: item.attributes.qty, tag: item.attributes.tag, cost: item.attributes.cost, vendor: item.attributes.vendor, sort_1: item.attributes.sort_1 });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
@@ -30,21 +30,21 @@ const Edit = ({ item }) => {
         }
     }, []);
 
-    const updateItem = async () => {
-        try {
-            const res = await fetch(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products/${item.id}`, {
-                method: 'PUT',
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-        
-                body: JSON.stringify(form)
-            })
+    const updateItem = () => {
+        axios.put(`http://localhost:1337/api/products/${item.id}` , 
+        {
+            "data": {
+                name: form.name,
+                qty: form.qty,
+                cost: form.cost,
+                tag: form.tag,
+                vendor: form.vendor
+            }
+        })
+        .then(respose => {
+            console.log(respose)
             router.push("/");
-        } catch (error) {
-            console.log(error);
-        }
+        })
     }
 
     const handleSubmit = (e) => {
@@ -146,8 +146,9 @@ const Edit = ({ item }) => {
 
 Edit.getInitialProps = async ({ query: { id } }) => {
     try {
-        const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products/${id}`);
-        const item = res.data
+        const res = await axios.get(`http://localhost:1337/api/products/${id}`);
+        const item = res.data.data
+        console.log('asdf')
         return {item};
     } catch (error) {
         return { error }

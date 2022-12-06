@@ -7,13 +7,13 @@ import axios from 'axios';
 const Index = () => {
     const [products, setProducts] = useState();
 
-    useEffect(() => {
+    useEffect(() => { 
         axios({
             "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500"
+            "url": "http://localhost:1337/api/products"
         })
         .then((response) => {
-            setProducts(response.data)
+            setProducts(response.data.data)
         })
     }, []);
 
@@ -50,10 +50,10 @@ const Index = () => {
                             <Table.Row>
                                 <Table.Cell>
                                     <Link href={`/${item.id}`}>
-                                        <a style={{color: itemTag(item.tag)}}>{item.name}</a>
+                                        <a style={{color: itemTag(item.attributes.tag)}}>{item.attributes.name}</a>
                                     </Link>
                                 </Table.Cell>
-                                <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.qty}</Table.Cell>
+                                <Table.Cell style={{backgroundColor: itemQuantity(item.attributes.qty)}}>{item.attributes.qty}</Table.Cell>
                                 <Table.Cell collapsing textAlign='right'>
                                     <Link href={`/${item.id}`}>
                                         <Button primary>View</Button>

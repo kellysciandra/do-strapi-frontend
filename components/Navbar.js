@@ -69,37 +69,37 @@ const options = [
 const Navbar = () => (
     <NavbarContainer>
         <NavLink>
-            <Link prefetch href="/">
+            <Link href="/">
                 Home
             </Link>
         </NavLink>
         <NavLink>
-            <Link prefetch href="/new">
+            <Link href="/new">
                 Add New Item
             </Link>
         </NavLink>
         <NavLink>
-            <Link prefetch href="/order">
+            <Link href="/order">
                 Add To Order
             </Link>
         </NavLink>
         <NavLink>
-            <Link prefetch href="/past">
+            <Link href="/past">
                 Daily Order
             </Link>
         </NavLink>
         <NavLink>
-            <Link prefetch href="/stockReport">
+            <Link href="/stockReport">
                 Stock Reports
             </Link>
         </NavLink>
         <IceLink>
-            <Link prefetch href="/ice">
+            <Link href="/ice">
                 Ice Accounts
             </Link>
         </IceLink>
         <SearchLink>
-            <Link prefetch href="/search">
+            <Link href="/search">
                 Search
             </Link>
         </SearchLink>
