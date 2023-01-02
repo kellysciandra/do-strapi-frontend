@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { Button, Table} from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Chemical = ({ items }) => {
+const Chemical = () => {
     const [items, setItems] = useState();
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const Chemical = ({ items }) => {
                 </Table.Header>
     
                 {items ? items.map(item => {
-                    if (item.tag === 'Chemical')
+                    if (item.attributes.tag === 'Chemical')
                     return <>
                         <Table.Body>
                         <Table.Row>

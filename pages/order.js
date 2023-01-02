@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react'
-import fetch from 'isomorphic-unfetch';
 import EditOrder from '../components/EditOrder';
 import { Button, Table, Popup } from 'semantic-ui-react';
 import { ItemsHeader, ItemsContainer } from '../styles/index.styles'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {isMobile} from 'react-device-detect';
+import axios from 'axios';
 
 
-const Order = ({ products }) => {
+const Order = () => {
     const [currentItem, setCurrentItem] = useState({});
+    const [products, setProducts] = useState();
     const [currentOrder, setCurrentOrder] = useState([]);
     const [open, setOpen] = useState(false);
     const router = useRouter();
@@ -19,6 +20,16 @@ const Order = ({ products }) => {
         if (isMobile) {
             window.scrollTo({ top: 450, behavior: 'smooth' })
         }
+    }, []);
+
+    useEffect(() => { 
+        axios({
+            "method": "GET",
+            "url": "http://localhost:1337/api/products"
+        })
+        .then((response) => {
+            setProducts(response.data.data)
+        })
     }, []);
 
     const updateModal = (x) => {
@@ -69,16 +80,15 @@ const Order = ({ products }) => {
                     </Table.Header>
         
                     {products ? products.map(item => {
-                    const {id, name, qty } = item
                         return <>          
                             <Table.Body>
                                 <Table.Row>
                                     <Table.Cell>
-                                        <Link href={`/${id}`}>
-                                        <a style={{color: itemTag(item.tag)}}>{name}</a>
+                                        <Link href={`/${item.id}`}>
+                                        <a style={{color: itemTag(item.tag)}}>{item.attributes.name}</a>
                                         </Link>
                                     </Table.Cell>
-                                    <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{qty}</Table.Cell>
+                                    <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.attributes.qty}</Table.Cell>
                                     <Table.Cell collapsing>
 
                                             <Popup
@@ -87,23 +97,17 @@ const Order = ({ products }) => {
                                                 onClose={false}
                                                 // onOpen={() => setOpen(true)}
                                                 position='top right'
-                                                content={<EditOrder item={currentItem} handleModal={updateModal} name={currentItem.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>}
+                                                content={<EditOrder item={currentItem} handleModal={updateModal} name={item.attributes.name} updateOrder={updateCurrentOrder} productID={currentItem.id}/>}
                                             >
                                             </Popup>
                                     </Table.Cell>
                                 </Table.Row>      
                             </Table.Body>
                         </>
-                    }): null}
+                    }): 'No Products in Order'}
                 </Table>
         </ItemsContainer>
   </>
-}
-
-Order.getInitialProps = async (ctx) => {
-    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500');
-    const data = await res.json();
-    return { products: data }
 }
 
 export default Order;

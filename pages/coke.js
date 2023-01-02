@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { Button, Table} from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Coke = ({ items }) => {
+const Coke = () => {
     const [items, setItems] = useState();
 
     useEffect(() => {
