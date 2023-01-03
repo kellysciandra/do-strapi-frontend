@@ -4,7 +4,6 @@ import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import moment from 'moment'
 import { EditItemsContainer, EditHeader } from '../styles/index.styles';
-import axios from 'axios';
 
 const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
     const [form, setForm] = useState({ name: name, qty: 0, date: new Date(), product: productID });
@@ -24,21 +23,22 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
         }
     }, [errors])
 
-    const updateItem = () => {
-        axios.post('http://localhost:1337/api/orders' , 
-        {
-            "data": {
-                name: form.name,
-                qty: form.qty,
-                date: form.date,
-                productID: productID
-            }
-        })
-        .then(response => { console.log(response)
+    const updateItem = async () => {
+        try {
+            const res = await fetch('http://Kellys-Mac-mini.lan:1337/orders', {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form),
+            })
             handleModal(false)
             updateOrder(form)
-            // router.reload(window.location.pathname);
-        })
+            router.reload(window.location.pathname);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const handleSubmit = (e) => {
@@ -65,9 +65,8 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
         return err;
     }
 
-    const convertDate = (date) => { 
+    const convertDate = (date) => {
         var momentDate = moment(date).format("MMM Do YY");
-        console.log(momentDate)
         return momentDate;
     };
 
@@ -93,12 +92,12 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
                                 label='Name'
                                 placeholder='Name'
                                 name='name'
-                                value={item.attributes.name}
+                                value={name}
                             />
                             <Form.Input
                                 fluid
                                 label='Quantity'
-                                placeholder={item.attributes.qty === 0 ? 'ITEM IS OUT OF STOCK' : 'Quantity'}
+                                placeholder={item.qty === 0 ? 'Item is out of stock' : 'Quantity'}
                                 name='qty'
                                 error={errors.qty ? { content: 'Please enter a total quantity', pointing: 'below' } : null}
                                 onChange={handleChange}

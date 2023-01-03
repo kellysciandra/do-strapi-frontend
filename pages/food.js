@@ -10,7 +10,7 @@ const Food = () => {
     useEffect(() => {
         axios({
             "method": "GET",
-            "url": "http://localhost:1337/api/products"
+            "url": "http://localhost:1337/products"
         })
         .then((response) => {
             setItems(response.data.data)

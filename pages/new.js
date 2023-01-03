@@ -5,18 +5,6 @@ import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import {AddItemContainer, ItemsHeader} from '../styles/index.styles'
 import {isMobile} from 'react-device-detect';
-import axios from 'axios';
-
-const options = [
-    { key: 'p', text: 'Paper', value: 'Paper' },
-    { key: 'f', text: 'Food', value: 'Food' },
-    { key: 'c', text: 'Chemical', value: 'Chemical' },
-    { key: 'ck', text: 'Coke', value: 'Coke' },
-    { key: 't', text: 'T-Shirt', value: 'T-Shirt' },
-    { key: 'l', text: 'Liquor', value: 'Liquor' },
-     { key: 'l', text: 'Beer', value: 'Beer' },
-     { key: 'l', text: 'Wine', value: 'Wine' },
-  ]
 
 const NewItem = () => {
     const [form, setForm] = useState({ product: '', total: '' });
@@ -41,21 +29,20 @@ const NewItem = () => {
         }
     }, []);
 
-    const createItem = () => {
-        axios.post('http://localhost:1337/api/products' , 
-        {
-            "data": {
-                name: form.name,
-                qty: form.qty,
-                cost: form.cost,
-                tag: form.tag,
-                vendor: form.vendor
-            }
-        })
-        .then(respose => {
-            console.log(respose)
+    const createItem = async () => {
+        try {
+            const res = await fetch('http://Kellys-Mac-mini.lan:1337/products', {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form)
+            })
             router.push("/");
-        })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const handleSubmit = (e) => {
@@ -109,10 +96,10 @@ const NewItem = () => {
                                 error={errors.qty ? { content: 'Please enter a total quantity', pointing: 'below' } : null}
                                 onChange={handleChange}
                             />
-                            <Form.Select
+                            <Form.Input
                                 fluid
                                 label='Tag'
-                                options={options}
+                                placeholder='Food, Paper, Liquor, Chemical, TShirt'
                                 name='tag'
                                 error={errors.tag ? { content: 'Please enter a tag', pointing: 'below' } : null}
                                 onChange={handleChange}

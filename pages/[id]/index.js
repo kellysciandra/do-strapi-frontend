@@ -33,7 +33,7 @@ const Item = ({ item }) => {
     const deleteItem = async () => {
         const itemId = router.query.id;
         try {
-            const deleted = await fetch(`http://localhost:1337/api/products/${itemId}`, {
+            const deleted = await fetch(`http://Kellys-Mac-mini.lan:1337/products/${itemId}`, {
                 method: "Delete"
             });
             router.push("/")
@@ -61,11 +61,11 @@ const Item = ({ item }) => {
                     {item ? 
                         <CardContainer>
                         <Card>
-                            <Card.Content header={item.attributes.name} />
-                            <Card.Content description={`In Stock: ${item.attributes.qty}`}/>
-                            <Card.Content description={`Tag: ${item.attributes.tag}`}/>
-                            <Card.Content description={`Cost: ${item.attributes.cost || '...'}`}/>
-                            <Card.Content description={`Vendor: ${item.attributes.vendor || '...'}`}/>
+                            <Card.Content header={item.name} />
+                            <Card.Content description={`In Stock: ${item.qty}`}/>
+                            <Card.Content description={`Tag: ${item.tag}`}/>
+                            <Card.Content description={`Cost: ${item.cost || '...'}`}/>
+                            <Card.Content description={`Vendor: ${item.vendor || '...'}`}/>
                             <Card.Content extra>
                                 <Input
                                     placeholder="Case Size / Total lbs"
@@ -101,8 +101,8 @@ const Item = ({ item }) => {
 
 Item.getInitialProps = async ({ query: { id } }) => {
     try {
-        const res = await axios.get(`http://localhost:1337/api/products/${id}`);
-        const item = res.data.data
+        const res = await axios.get(`http://Kellys-Mac-mini.lan:1337/products/${id}`);
+        const item = res.data
         return {item};
     } catch (error) {
         return { error }

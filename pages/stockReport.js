@@ -132,7 +132,7 @@ const StockReport = ({ products }) => {
 }
 
 StockReport.getInitialProps = async (ctx) => {
-    const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500');
+    const res = await fetch('http://Kellys-Mac-mini.lan:1337/products');
     const data = await res.json();
     return { products: data }
 }
