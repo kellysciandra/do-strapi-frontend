@@ -65,7 +65,7 @@ const Index = ({ products }) => {
 
 Index.getInitialProps = async ctx => {
     try {
-        const res = await fetch('http://www.nancys.dev/products?_limit=500');
+        const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500');
         const data = await res.json();
         return { products: data }
     }catch (error) {

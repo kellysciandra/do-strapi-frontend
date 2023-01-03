@@ -31,7 +31,7 @@ const NewItem = () => {
 
     const createItem = async () => {
         try {
-            const res = await fetch('http://www.nancys.dev/products?_limit=500', {
+            const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
