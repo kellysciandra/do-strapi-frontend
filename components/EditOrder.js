@@ -25,7 +25,7 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
 
     const updateItem = async () => {
         try {
-            const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/orders?_limit=500', {
+            const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/orders', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
