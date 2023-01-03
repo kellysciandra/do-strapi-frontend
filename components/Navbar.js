@@ -1,5 +1,5 @@
-
 import Link from 'next/link';
+import { useState } from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import {DropDownLink, NavbarContainer, NavLink, SearchLink, IceLink} from './nav.styles.js'
 
@@ -66,47 +66,53 @@ const options = [
     },
   ]
 
-const Navbar = () => (
-    <NavbarContainer>
-        <NavLink>
-            <Link href="/">
-                Home
-            </Link>
-        </NavLink>
-        <NavLink>
-            <Link href="/new">
-                Add New Item
-            </Link>
-        </NavLink>
-        <NavLink>
-            <Link href="/order">
-                Add To Order
-            </Link>
-        </NavLink>
-        <NavLink>
-            <Link href="/past">
-                Daily Order
-            </Link>
-        </NavLink>
-        {/* <NavLink>
-            <Link href="/stockReport">
-                Stock Reports
-            </Link>
-        </NavLink> */}
-        <IceLink>
-            <Link href="/ice">
-                Ice Accounts
-            </Link>
-        </IceLink>
-        <SearchLink>
-            <Link href="/search">
-                Search
-            </Link>
-        </SearchLink>
-        <DropDownLink>
-            <Dropdown  selection  options={options} placeholder='Choose an option' />
-        </DropDownLink>
-    </NavbarContainer>
-)
+const Navbar = () => {
+    const [selections, setSelections] = useState(options);
+
+    return <>
+
+        <NavbarContainer>
+                <NavLink>
+                    <Link href="/">
+                        Home
+                    </Link>
+                </NavLink>
+                <NavLink>
+                    <Link href="/new">
+                        Add New Item
+                    </Link>
+                </NavLink>
+                <NavLink>
+                    <Link href="/order">
+                        Add To Order
+                    </Link>
+                </NavLink>
+                <NavLink>
+                    <Link href="/past">
+                        Daily Order
+                    </Link>
+                </NavLink>
+                {/* <NavLink>
+                    <Link href="/stockReport">
+                        Stock Reports
+                    </Link>
+                </NavLink> */}
+                <IceLink>
+                    <Link href="/ice">
+                        Ice Accounts
+                    </Link>
+                </IceLink>
+                <SearchLink>
+                    <Link href="/search">
+                        Search
+                    </Link>
+                </SearchLink>
+                <DropDownLink>
+                    <Dropdown  selection  options={selections} placeholder='Choose an option' />
+                </DropDownLink>
+            </NavbarContainer>
+    
+    </>
+}
 
 export default Navbar;
