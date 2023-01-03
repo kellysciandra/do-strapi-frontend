@@ -1,21 +1,9 @@
 import Link from 'next/link';
 import { Button, Table} from 'semantic-ui-react';
 import {ItemsContainer, ItemsHeader} from '../styles/index.styles'
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Food = () => {
-    const [items, setItems] = useState();
-
-    useEffect(() => {
-        axios({
-            "method": "GET",
-            "url": "http://localhost:1337/products"
-        })
-        .then((response) => {
-            setItems(response.data.data)
-        })
-    }, []);
+const Food = ({ items }) => {
 
     const itemQuantity = (qty) => {
         if (qty <= 0) {
@@ -30,37 +18,44 @@ const Food = () => {
                 <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Product</Table.HeaderCell>
-                    <Table.HeaderCell>Total</Table.HeaderCell>
+                    <Table.HeaderCell>Stock</Table.HeaderCell>
                     <Table.HeaderCell>Action</Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
     
                 {items ? items.map(item => {
-                    if (item.attributes.tag === 'Food')
+                    if (item.tag === 'Food')
                     return <>
                         <Table.Body>
                         <Table.Row>
                             <Table.Cell>
-                                <Link legacyBehavior href={`/${item.id}`}>
-                                    <a style={{color: 'blue'}}>{item.attributes.name}</a>
+                                <Link href={`/${item.id}`}>
+                                    <a style={{color: 'blue'}}>{item.name}</a>
                                 </Link>
                             </Table.Cell>
-                            <Table.Cell style={{backgroundColor: itemQuantity(item.attributes.qty)}}>{item.attributes.qty}</Table.Cell>
+                            <Table.Cell style={{backgroundColor: itemQuantity(item.qty)}}>{item.qty}</Table.Cell>
                             <Table.Cell collapsing textAlign='right'>
                                 <Link href={`/${item.id}`}>
                                     <Button primary>View</Button>
-                                </Link>
-                                <Link href={`/${item.id}/edit`}>
-                                    <Button color="orange">Edit</Button>
                                 </Link>
                             </Table.Cell>
                         </Table.Row>
                         </Table.Body>        
                     </>
-                }): "No Data Available"}
+                }): "No Data"}
             </Table>
         </ItemsContainer>
     </>
+}
+
+Food.getInitialProps = async () => {
+    try {
+        const res = await axios.get(`http://Kellys-Mac-mini.lan:1337/products`);
+        const items = res.data
+        return {items};
+    } catch (error) {
+        return { error }
+    }
 }
 
 export default Food;

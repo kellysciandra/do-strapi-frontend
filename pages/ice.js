@@ -12,13 +12,12 @@ const Ice = ({ accounts }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
-
     const [accountInfo, setAccountInfo] = useState();
 
     useEffect(() => {
         axios({
             "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/ices?_limit=500"
+            "url": "http://Kellys-Mac-mini.lan:1337/ices"
         })
         .then((response) => {
             setAccountInfo(response.data)
@@ -44,7 +43,7 @@ const Ice = ({ accounts }) => {
 
     const createItem = async () => {
         try {
-            const res = await fetch('https://do-strapi-backend-cnnh6.ondigitalocean.app/ices?_limit=500', {
+            const res = await fetch('http://Kellys-Mac-mini.lan:1337/ices', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
@@ -142,9 +141,7 @@ const IceAccounts = ({accounts}) => {
                         <Table.Body>
                         <Table.Row>
                             <Table.Cell>
-                           
-                                    {account.account}
-                              
+                                {account.account}
                             </Table.Cell>
                             <Table.Cell>$ {account.balance}</Table.Cell>
                             <Table.Cell collapsing textAlign='right'>

@@ -16,7 +16,7 @@ const Search = () => {
     useEffect(() => {
         axios({
             "method": "GET",
-            "url": "https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500"
+            "url": "http://Kellys-Mac-mini.lan:1337/products"
         })
         .then((response) => {
             setProducts(response.data)

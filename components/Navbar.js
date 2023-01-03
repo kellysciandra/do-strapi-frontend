@@ -88,11 +88,11 @@ const Navbar = () => (
                 Daily Order
             </Link>
         </NavLink>
-        <NavLink>
+        {/* <NavLink>
             <Link href="/stockReport">
                 Stock Reports
             </Link>
-        </NavLink>
+        </NavLink> */}
         <IceLink>
             <Link href="/ice">
                 Ice Accounts

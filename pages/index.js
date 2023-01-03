@@ -11,6 +11,8 @@ const Index = ({ products }) => {
             return 'blue'
         } else if (tag === 'Liquor') {
             return 'green'
+        } else if (tag === 'Wine' || tag === 'Beer') {
+            return 'gray'
         } else if (tag === 'Chemical') {
             return 'purple'
         } else if (tag === 'Coke') {

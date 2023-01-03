@@ -66,14 +66,14 @@ const Item = ({ item }) => {
                             <Card.Content description={`Tag: ${item.tag}`}/>
                             <Card.Content description={`Cost: ${item.cost || '...'}`}/>
                             <Card.Content description={`Vendor: ${item.vendor || '...'}`}/>
-                            <Card.Content extra>
+                            {/* <Card.Content extra>
                                 <Input
                                     placeholder="Case Size / Total lbs"
                                     size="mini"
                                     onChange={handleChange}
                                 />
                             </Card.Content>
-                            <Card.Content description={`Cost Per: ${caseSize || '...'}`}/>
+                            <Card.Content description={`Cost Per: ${caseSize || '...'}`}/> */}
                            
                           
                             <Card.Content>

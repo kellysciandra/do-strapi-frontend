@@ -50,7 +50,7 @@ const Tshirt = ({ items }) => {
 
 Tshirt.getInitialProps = async () => {
     try {
-        const res = await axios.get(`https://do-strapi-backend-cnnh6.ondigitalocean.app/products?_limit=500`);
+        const res = await axios.get(`http://Kellys-Mac-mini.lan:1337/products`);
         const items = res.data
         return {items};
     } catch (error) {

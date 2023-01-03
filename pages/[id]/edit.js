@@ -1,12 +1,21 @@
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import {EditContainer} from '../../styles/index.styles'
-import { Button, Form, Loader } from 'semantic-ui-react';
+import { Button, Form, Loader, Dropdown, Select } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import {isMobile} from 'react-device-detect';
 
-
+const options = [
+    {key: 'Food', text: 'Food', value: 'Food'},
+    {key: 'Paper', text: 'Paper', value: 'Paper'},
+    {key: 'Liquor', text: 'Liquor', value: 'Liquor'},
+    {key: 'Beer', text: 'Beer', value: 'Beer'},
+    {key: 'Wine', text: 'Wine', value: 'Wine'},
+    {key: 'Chemical', text: 'Chemical', value: 'Chemical'},
+    {key: 'Tshirt', text: 'Tshirt', value: 'Tshirt'},
+    {key: 'Coke', text: 'Coke', value: 'Coke'},
+]
 const Edit = ({ item }) => {
     const [form, setForm] = useState({ name: item.name, qty: item.qty, tag: item.tag, cost: item.cost, vendor: item.vendor, sort_1: item.sort_1 });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,6 +90,7 @@ const Edit = ({ item }) => {
                     isSubmitting
                         ? <Loader active inline='centered' />
                         : <Form onSubmit={handleSubmit}>
+
                             <Form.Input
                                 fluid
                                 error={errors.name ? { content: 'Please enter a product', pointing: 'below' } : null}
@@ -99,14 +109,15 @@ const Edit = ({ item }) => {
                                 value={form.qty}
                                 onChange={handleChange}
                             />
-                            <Form.Input
+                            <Form.Input 
                                 fluid
                                 label='Tag'
                                 placeholder='Tag'
                                 name='tag'
-                                error={errors.tag ? { content: 'Please enter a tag', pointing: 'below' } : null}
+                                error={errors.tag ? { content: 'Please enter a cost', pointing: 'below' } : null}
                                 value={form.tag}
                                 onChange={handleChange}
+                          
                             />
                             <Form.Input
                                 fluid
@@ -117,15 +128,6 @@ const Edit = ({ item }) => {
                                 value={form.cost}
                                 onChange={handleChange}
                             />
-                            {/* <Form.Input
-                                fluid
-                                label='Case Size'
-                                placeholder='Case Size'
-                                name='sort_1'
-                                error={errors.sort_1 ? { content: 'Please enter a case size', pointing: 'below' } : null}
-                                value={form.sort_1}
-                                onChange={handleChange}
-                            /> */}
                             <Form.Input
                                 fluid
                                 label='Vendor'
