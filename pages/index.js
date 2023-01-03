@@ -65,7 +65,7 @@ const Index = ({ products }) => {
 
 Index.getInitialProps = async ctx => {
     try {
-        const res = await fetch('http://Kellys-Mac-mini.lan:1337/products');
+        const res = await fetch('http://www.nancys.dev/products?_limit=500');
         const data = await res.json();
         return { products: data }
     }catch (error) {

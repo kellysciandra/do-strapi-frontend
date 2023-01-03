@@ -31,7 +31,7 @@ const NewItem = () => {
 
     const createItem = async () => {
         try {
-            const res = await fetch('http://Kellys-Mac-mini.lan:1337/products', {
+            const res = await fetch('http://www.nancys.dev/products?_limit=500', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
