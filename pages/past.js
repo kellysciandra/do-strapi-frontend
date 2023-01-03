@@ -71,7 +71,7 @@ const Past = ({ orders }) => {
     const handleDelete = async (id) => {
         const deleteX = await axios({
             "method": "DELETE",
-            "url": `https://whale-app-v7zkn.ondigitalocean.app/orders?_limit=500/${id}`
+            "url": `https://whale-app-v7zkn.ondigitalocean.app/orders/${id}`
         })
         .then((response) => {
             console.log(response)
@@ -87,7 +87,7 @@ const Past = ({ orders }) => {
     const handleSuccess = async (x) => {
         const run = await axios({
             "method": "PUT",
-            "url": `https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500/${x.product.id}`,
+            "url": `https://whale-app-v7zkn.ondigitalocean.app/products/${x.product.id}`,
             "data": {
                 qty: x.product.qty - x.qty
             }
@@ -174,12 +174,12 @@ const AllOrders = ({orders, deleteOrder, success}) => {
                                                 <Button 
                                                     size="tiny" 
                                                     color="red"
-                                                    onClick={() => handleDelete(x.id)}
+                                                    onClick={() => deleteOrder(x.id)}
                                                 ><FontAwesomeIcon icon={faTrash} /></Button>
                                                 <Button 
                                                     size="tiny" 
                                                     color="green"
-                                                    onClick={() => handleSuccess(x)}
+                                                    onClick={() => success(x)}
                                                 ><FontAwesomeIcon icon={faCheckDouble} /></Button> 
                                         </Card.Content>
                                 </Card>
