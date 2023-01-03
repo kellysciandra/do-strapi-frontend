@@ -17,7 +17,7 @@ const Ice = ({ accounts }) => {
     useEffect(() => {
         axios({
             "method": "GET",
-            "url": "http://Kellys-Mac-mini.lan:1337/ices"
+            "url": "https://whale-app-v7zkn.ondigitalocean.app/ices"
         })
         .then((response) => {
             setAccountInfo(response.data)
@@ -43,7 +43,7 @@ const Ice = ({ accounts }) => {
 
     const createItem = async () => {
         try {
-            const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/ices?_limit=500', {
+            const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/ices', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
