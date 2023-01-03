@@ -41,7 +41,7 @@ const Edit = ({ item }) => {
 
     const updateItem = async () => {
         try {
-            const res = await fetch(`http://Kellys-Mac-mini.lan:1337/products/${item.id}`, {
+            const res = await fetch(`https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500/${item.id}`, {
                 method: 'PUT',
                 headers: {
                     "Accept": "application/json",
@@ -148,7 +148,7 @@ const Edit = ({ item }) => {
 
 Edit.getInitialProps = async ({ query: { id } }) => {
     try {
-        const res = await axios.get(`http://Kellys-Mac-mini.lan:1337/products/${id}`);
+        const res = await axios.get(`https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500/${id}`);
         const item = res.data
         return {item};
     } catch (error) {

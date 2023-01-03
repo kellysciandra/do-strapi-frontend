@@ -101,7 +101,7 @@ const Order = ({ products }) => {
 }
 
 Order.getInitialProps = async (ctx) => {
-    const res = await fetch('http://Kellys-Mac-mini.lan:1337/products');
+    const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500');
     const data = await res.json();
     return { products: data }
 }

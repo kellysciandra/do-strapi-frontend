@@ -33,7 +33,7 @@ const Item = ({ item }) => {
     const deleteItem = async () => {
         const itemId = router.query.id;
         try {
-            const deleted = await fetch(`http://Kellys-Mac-mini.lan:1337/products/${itemId}`, {
+            const deleted = await fetch(`https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500/${itemId}`, {
                 method: "Delete"
             });
             router.push("/")
@@ -101,7 +101,7 @@ const Item = ({ item }) => {
 
 Item.getInitialProps = async ({ query: { id } }) => {
     try {
-        const res = await axios.get(`http://Kellys-Mac-mini.lan:1337/products/${id}`);
+        const res = await axios.get(`https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500/${id}`);
         const item = res.data
         return {item};
     } catch (error) {

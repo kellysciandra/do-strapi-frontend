@@ -71,7 +71,7 @@ const Past = ({ orders }) => {
     const handleDelete = async (id) => {
         const deleteX = await axios({
             "method": "DELETE",
-            "url": `http://Kellys-Mac-mini.lan:1337/orders/${id}`
+            "url": `https://whale-app-v7zkn.ondigitalocean.app/orders?_limit=500/${id}`
         })
         .then((response) => {
             console.log(response)
@@ -87,7 +87,7 @@ const Past = ({ orders }) => {
     const handleSuccess = async (x) => {
         const run = await axios({
             "method": "PUT",
-            "url": `http://Kellys-Mac-mini.lan:1337/products/${x.product.id}`,
+            "url": `https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500/${x.product.id}`,
             "data": {
                 qty: x.product.qty - x.qty
             }
@@ -152,7 +152,7 @@ const Past = ({ orders }) => {
 };
 
 Past.getInitialProps = async (ctx) => {
-    const res = await fetch('http://Kellys-Mac-mini.lan:1337/orders');
+    const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/orders?_limit=500');
     const data = await res.json();
     console.log(data)
     return { orders: data }

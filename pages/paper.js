@@ -50,7 +50,7 @@ const Paper = ({ items }) => {
 
 Paper.getInitialProps = async () => {
     try {
-        const res = await axios.get(`http://Kellys-Mac-mini.lan:1337/products`);
+        const res = await axios.get(`https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500`);
         const items = res.data
         return {items};
     } catch (error) {

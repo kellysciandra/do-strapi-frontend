@@ -43,7 +43,7 @@ const Ice = ({ accounts }) => {
 
     const createItem = async () => {
         try {
-            const res = await fetch('http://Kellys-Mac-mini.lan:1337/ices', {
+            const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/ices?_limit=500', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",

@@ -25,7 +25,7 @@ const EditIce = ({ x }) => {
 
     const updateItem = async () => {
         try {
-            const res = await fetch(`http://Kellys-Mac-mini.lan:1337/ices/${x.id}`, {
+            const res = await fetch(`https://whale-app-v7zkn.ondigitalocean.app/ices?_limit=500/${x.id}`, {
                 method: 'PUT',
                 headers: {
                     "Accept": "application/json",
@@ -69,7 +69,7 @@ const EditIce = ({ x }) => {
     const handleDelete = async () => {
         const itemId = x.id;
         try {
-            const deleted = await fetch(`http://Kellys-Mac-mini.lan:1337/ices/${itemId}`, {
+            const deleted = await fetch(`https://whale-app-v7zkn.ondigitalocean.app/ices?_limit=500/${itemId}`, {
                 method: "Delete"
             });
             router.push("/")
@@ -125,7 +125,7 @@ const EditIce = ({ x }) => {
 
 EditIce.getInitialProps = async ({ query: { id } }) => {
     try {
-        const res = await axios.get(`http://Kellys-Mac-mini.lan:1337/ices/${id}`);
+        const res = await axios.get(`https://whale-app-v7zkn.ondigitalocean.app/ices?_limit=500/${id}`);
         const x = res.data
         return {x};
     } catch (error) {

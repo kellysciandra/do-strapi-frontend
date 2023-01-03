@@ -16,7 +16,7 @@ const Search = () => {
     useEffect(() => {
         axios({
             "method": "GET",
-            "url": "http://Kellys-Mac-mini.lan:1337/products"
+            "url": "https://whale-app-v7zkn.ondigitalocean.app/products?_limit=500"
         })
         .then((response) => {
             setProducts(response.data)

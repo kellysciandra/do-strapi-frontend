@@ -25,7 +25,7 @@ const EditOrder = ({ item, handleModal, updateOrder, name, productID }) => {
 
     const updateItem = async () => {
         try {
-            const res = await fetch('http://Kellys-Mac-mini.lan:1337/orders', {
+            const res = await fetch('https://whale-app-v7zkn.ondigitalocean.app/orders?_limit=500', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
