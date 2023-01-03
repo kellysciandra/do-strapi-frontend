@@ -50,7 +50,7 @@ const Edit = ({ item }) => {
         
                 body: JSON.stringify(form)
             })
-            router.push("/");
+            router.reload("/");
         } catch (error) {
             console.log(error);
         }
